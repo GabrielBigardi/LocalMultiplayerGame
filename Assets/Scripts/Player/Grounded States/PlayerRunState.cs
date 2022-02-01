@@ -16,7 +16,7 @@ public class PlayerRunState : PlayerGroundedState
     public override void FixedTick()
     {
         base.FixedTick();
-        _playerEntity.SetVelocityX(_playerEntity.core.playerInputHandler.mov.x * (_playerEntity.data.moveSpeed * 2f) * Time.deltaTime);
+        _playerEntity.SetVelocityX(_playerEntity.core.playerInputHandler.mov.x * (_playerEntity.data.moveSpeed * _playerEntity.data.runSpeedMultiplier) * Time.deltaTime);
     }
 
     public override void OnEnter()

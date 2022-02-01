@@ -25,7 +25,6 @@ public class PlayerWaterSwimState : PlayerWaterState
     {
         base.OnEnter();
 
-        Debug.Log($"Water Swim - Drowning: {drowning}");
         _playerEntity.currentState = "Water Swim";
         _playerEntity.PlayAnimation("WaterSwim");
     }

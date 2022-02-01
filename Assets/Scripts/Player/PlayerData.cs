@@ -7,14 +7,15 @@ public class PlayerData : ScriptableObject
 {
     public LayerMask groundLayer;
     public LayerMask waterLayer;
-    public float shootDelay = 0.25f;
+    public float shootDelay;
 
     [Header("Movement")]
-    public float moveSpeed = 120f;
-    public float airSpeed = 120f;
-    public float waterSpeed = 60f;
+    public float moveSpeed;
+    public float airSpeed;
+    public float waterSpeed;
+    public float runSpeedMultiplier;
 
     [Header("Jump")]
     public float jumpForce;
-    public float jumpBufferTime = 0.25f;
+    public float jumpBufferTime;
 }

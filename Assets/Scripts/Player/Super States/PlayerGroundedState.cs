@@ -17,6 +17,11 @@ public class PlayerGroundedState : IState
     {
         _playerEntity.JumpCheck();
         _playerEntity.Shoot();
+
+        if (_playerEntity.core.playerInputHandler.jump)
+        {
+            _stateMachine.SetState(_playerEntity.AirState);
+        }
     }
 
     public virtual void FixedTick()
