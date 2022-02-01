@@ -18,7 +18,8 @@ public class PlayerWaterSwimState : PlayerWaterState
     {
         base.Tick();
 
-        _playerEntity.core.rgbd.velocity = _playerEntity.data.waterSpeed * Time.deltaTime * (new Vector2(_playerEntity.core.playerInputHandler.mov.x, _playerEntity.core.playerInputHandler.mov.y).normalized);
+        _playerEntity.core.rgbd.velocity = (_playerEntity.core.playerInputHandler.holdingRun ? _playerEntity.data.waterSpeed * _playerEntity.data.runSpeedMultiplier : _playerEntity.data.waterSpeed) * Time.deltaTime * (new Vector2(_playerEntity.core.playerInputHandler.mov.x, _playerEntity.core.playerInputHandler.mov.y).normalized);
+        //_playerEntity.core.rgbd.velocity = _playerEntity.data.waterSpeed * Time.deltaTime * (new Vector2(_playerEntity.core.playerInputHandler.mov.x, _playerEntity.core.playerInputHandler.mov.y).normalized);
     }
 
     public override void OnEnter()

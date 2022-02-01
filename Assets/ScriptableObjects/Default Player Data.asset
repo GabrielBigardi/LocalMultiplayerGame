@@ -19,9 +19,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16
   shootDelay: 0.75
-  moveSpeed: 300
-  airSpeed: 300
-  waterSpeed: 300
+  moveSpeed: 275
+  airSpeed: 275
+  waterSpeed: 275
   runSpeedMultiplier: 1.5
   jumpForce: 10.5
   jumpBufferTime: 0.25

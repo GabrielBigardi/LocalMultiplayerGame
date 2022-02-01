@@ -20,7 +20,7 @@ public class PlayerAirState : IState
 
     public void FixedTick()
     {
-        _playerEntity.SetVelocityX(_playerEntity.core.playerInputHandler.mov.x * (_playerEntity.core.playerInputHandler.holdingRun ? _playerEntity.data.moveSpeed * _playerEntity.data.runSpeedMultiplier : _playerEntity.data.airSpeed) * Time.deltaTime);
+        _playerEntity.SetVelocityX(_playerEntity.core.playerInputHandler.mov.x * (_playerEntity.core.playerInputHandler.holdingRun ? _playerEntity.data.airSpeed * _playerEntity.data.runSpeedMultiplier : _playerEntity.data.airSpeed) * Time.deltaTime);
     }
 
     public void OnEnter()
