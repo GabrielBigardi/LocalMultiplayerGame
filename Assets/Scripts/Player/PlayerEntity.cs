@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SimpleSpriteAnimator;
 
-public class PlayerEntity : MonoBehaviour, IDamageable, IHealable
+public class PlayerEntity : MonoBehaviour, IHealable
 {
     public PlayerCore core;
     public PlayerData data;
@@ -90,7 +90,12 @@ public class PlayerEntity : MonoBehaviour, IDamageable, IHealable
     {
         if (collision.CompareTag("Damage"))
         {
-            TakeDamage(5);
+            TakeDamage(5, true);
+        }
+
+        if (collision.CompareTag("Lava"))
+        {
+            TakeDamage(core.playerHealth.maxHealth, false);
         }
 
         if (collision.CompareTag("Pickup"))
@@ -101,12 +106,12 @@ public class PlayerEntity : MonoBehaviour, IDamageable, IHealable
 
         if(collision.CompareTag("BulletRed") && currentTeam == 1)
         {
-            TakeDamage(collision.GetComponent<Bullet>().baseDamage);
+            TakeDamage(collision.GetComponent<Bullet>().baseDamage, true);
         }
 
         if (collision.CompareTag("BulletGreen") && currentTeam == 0)
         {
-            TakeDamage(collision.GetComponent<Bullet>().baseDamage);
+            TakeDamage(collision.GetComponent<Bullet>().baseDamage, true);
         }
     }
 
@@ -293,9 +298,9 @@ public class PlayerEntity : MonoBehaviour, IDamageable, IHealable
         }
     }
 
-    public void TakeDamage(int damageToTake)
+    public void TakeDamage(int damageToTake, bool hurtState)
     {
-        if(StateMachine._currentState != WaterIdleState && StateMachine._currentState != WaterSwimState)
+        if(hurtState && (StateMachine._currentState != WaterIdleState && StateMachine._currentState != WaterSwimState))
             StateMachine.SetState(HurtState);
 
         core.playerHealth.TakeDamage(damageToTake);
