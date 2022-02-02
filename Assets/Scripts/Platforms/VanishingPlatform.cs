@@ -7,18 +7,26 @@ public class VanishingPlatform : MonoBehaviour
 {
     [SerializeField] private float _vanishSpeed;
     [SerializeField] private float _unvanishSpeed;
+    [SerializeField] private Collider2D _collider;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
 
     bool fading = false;
+
+    private void Start()
+    {
+        _collider = GetComponent<Collider2D>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     private async void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && !fading)
         {
-            await FadeTask();
+            StartCoroutine(FadeTask()); 
         }
     }
 
-    public async UniTask FadeTask()
+    public IEnumerator FadeTask()
     {
         var alpha = 1f;
         fading = true;
@@ -27,23 +35,23 @@ public class VanishingPlatform : MonoBehaviour
         {
             alpha -= _vanishSpeed;
             Color newColor = new Color(1, 1, 1, alpha);
-            GetComponent<SpriteRenderer>().color = newColor;
-            await UniTask.Yield();
+            _spriteRenderer.color = newColor;
+            yield return null;
         }
 
-        GetComponent<Collider2D>().enabled = false;
+        _collider.enabled = false;
 
-        await UniTask.Delay(1000);
+        yield return new WaitForSeconds(1f);
 
         while (alpha < 1f)
         {
             alpha += _unvanishSpeed;
             Color newColor = new Color(1, 1, 1, alpha);
-            GetComponent<SpriteRenderer>().color = newColor;
-            await UniTask.Yield();
+            _spriteRenderer.color = newColor;
+            yield return null;
         }
 
-        GetComponent<Collider2D>().enabled = true;
+        _collider.enabled = true;
         fading = false;
     }
 }

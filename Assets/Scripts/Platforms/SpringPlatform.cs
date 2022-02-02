@@ -10,7 +10,10 @@ public class SpringPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerEntity>().SetVelocityY(_launchSpeed);
+            var direction = transform.up;
+            print(direction);
+            collision.gameObject.GetComponent<PlayerEntity>().core.rgbd.velocity = (Vector3)collision.gameObject.GetComponent<PlayerEntity>().core.rgbd.velocity + (direction * _launchSpeed);
+            //collision.gameObject.GetComponent<PlayerEntity>().SetVelocityY(_launchSpeed);
         }
     }
 }
