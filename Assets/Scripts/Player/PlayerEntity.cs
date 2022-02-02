@@ -49,6 +49,8 @@ public class PlayerEntity : MonoBehaviour, IHealable
     public bool IsGrounded => Physics2D.OverlapCircle(core.groundCheckPoint.position, 0.02f, data.groundLayer);
     public bool IsOnWater => Physics2D.OverlapCircle(core.groundCheckPoint.position, 0.02f, data.waterLayer);
 
+    public bool IsOnWaterSuperState => this.StateMachine._currentState is PlayerWaterState;
+
     public int CurrentFrame => core.anim.CurrentFrame;
     public string currentState;
 
@@ -75,6 +77,11 @@ public class PlayerEntity : MonoBehaviour, IHealable
         if (core.currentJumpBufferTime <= 0)
         {
             core.jumpBuffer = false;
+        }
+
+        if(this.StateMachine._currentState is PlayerWaterState waterState)
+        {
+            print("waterstate");
         }
     }
 	
@@ -300,7 +307,7 @@ public class PlayerEntity : MonoBehaviour, IHealable
 
     public void TakeDamage(int damageToTake, bool hurtState)
     {
-        if(hurtState && (StateMachine._currentState != WaterIdleState && StateMachine._currentState != WaterSwimState))
+        if(hurtState && !IsOnWaterSuperState)
             StateMachine.SetState(HurtState);
 
         core.playerHealth.TakeDamage(damageToTake);
