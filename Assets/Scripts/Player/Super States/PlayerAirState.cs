@@ -27,6 +27,8 @@ public class PlayerAirState : IState
     {
         _playerEntity.currentState = "Air";
         _playerEntity.PlayAnimation("Air");
+        _playerEntity.core.currentInWaterTime = 0f;
+        _playerEntity.core.currentDrowningTime = 0f;
     }
 
     public void OnExit()

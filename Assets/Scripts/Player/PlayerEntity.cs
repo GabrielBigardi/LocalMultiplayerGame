@@ -6,6 +6,7 @@ using SimpleSpriteAnimator;
 
 public class PlayerEntity : MonoBehaviour, IHealable
 {
+    #region Player/States
     public PlayerCore core;
     public PlayerData data;
 
@@ -14,14 +15,12 @@ public class PlayerEntity : MonoBehaviour, IHealable
     public PlayerIdleState IdleState { get; private set; }
     public PlayerWalkState WalkState { get; private set; }
     public PlayerRunState RunState { get; private set; }
-
     public PlayerAirState AirState { get; private set; }
-
     public PlayerHurtState HurtState { get; private set; }
+    public PlayerWaterState WaterState { get; private set; }
+    #endregion
 
-    public PlayerWaterIdleState WaterIdleState { get; private set; }
-    public PlayerWaterSwimState WaterSwimState { get; private set; }
-
+    #region Transitions Func
     Func<bool> InputZero() => () => core.playerInputHandler.mov == Vector2.zero;
     Func<bool> InputNotZero() => () => core.playerInputHandler.mov != Vector2.zero;
 
@@ -45,6 +44,7 @@ public class PlayerEntity : MonoBehaviour, IHealable
 
     Func<bool> Running() => () => core.playerInputHandler.holdingRun && core.playerInputHandler.mov.x != 0f;
     Func<bool> NotRunning() => () => !core.playerInputHandler.holdingRun || core.playerInputHandler.mov.x == 0f;
+    #endregion
 
     public bool IsGrounded => Physics2D.OverlapCircle(core.groundCheckPoint.position, 0.02f, data.groundLayer);
     public bool IsOnWater => Physics2D.OverlapCircle(core.groundCheckPoint.position, 0.02f, data.waterLayer);
@@ -74,14 +74,27 @@ public class PlayerEntity : MonoBehaviour, IHealable
         core.currentShootDelay -= Time.deltaTime;
         core.currentJumpBufferTime -= Time.deltaTime;
 
+        //if (IsOnWaterSuperState)
+        //{
+        //    core.currentInWaterTime += Time.deltaTime;
+        //    if(core.currentInWaterTime >= 4f)
+        //    {
+        //        core.currentDrowningTime += Time.deltaTime;
+        //        if(core.currentDrowningTime >= 1f)
+        //        {
+        //            TakeDamage(5,false);
+        //            core.currentDrowningTime = 0f;
+        //        }
+        //    }
+        //}
+        //else
+        //{
+        //    core.currentInWaterTime = 0f;
+        //}
+
         if (core.currentJumpBufferTime <= 0)
         {
             core.jumpBuffer = false;
-        }
-
-        if(this.StateMachine._currentState is PlayerWaterState waterState)
-        {
-            print("waterstate");
         }
     }
 	
@@ -141,8 +154,7 @@ public class PlayerEntity : MonoBehaviour, IHealable
 
         HurtState = new PlayerHurtState(StateMachine, this);
 
-        WaterIdleState = new PlayerWaterIdleState(StateMachine, this);
-        WaterSwimState = new PlayerWaterSwimState(StateMachine, this);
+        WaterState = new PlayerWaterState(StateMachine, this);
 
     }
 
@@ -151,40 +163,30 @@ public class PlayerEntity : MonoBehaviour, IHealable
         //Idle
         StateMachine.AddTransition(IdleState, WalkState, InputXNotZero());
         StateMachine.AddTransition(IdleState, AirState, NotGrounded());
-        StateMachine.AddTransition(IdleState, WaterIdleState, OnWater());
 
         //Walk
         StateMachine.AddTransition(WalkState, IdleState, InputXZero());
         StateMachine.AddTransition(WalkState, AirState, NotGrounded());
         StateMachine.AddTransition(WalkState, RunState, Running());
-        StateMachine.AddTransition(WalkState, WaterIdleState, OnWater());
 
         //Run
         StateMachine.AddTransition(RunState, WalkState, NotRunning());
         StateMachine.AddTransition(RunState, AirState, NotGrounded());
-        StateMachine.AddTransition(RunState, WaterIdleState, OnWater());
 
 
         //Hurt
         StateMachine.AddTransition(HurtState, IdleState, GroundedInputZeroLastFrame());
         StateMachine.AddTransition(HurtState, WalkState, GroundedInputNotZeroLastFrame());
         StateMachine.AddTransition(HurtState, AirState, NotGroundedLastFrame());
-        StateMachine.AddTransition(HurtState, WaterIdleState, OnWater());
 
         //Air
         StateMachine.AddTransition(AirState, IdleState, GroundedInputXZero());
         StateMachine.AddTransition(AirState, WalkState, GroundedInputXNotZero());
-        StateMachine.AddTransition(AirState, WaterIdleState, OnWater());
 
-        //WaterIdle
-        StateMachine.AddTransition(WaterIdleState, AirState, NotOnWaterNotGrounded());
-        StateMachine.AddTransition(WaterIdleState, WaterSwimState, InputNotZero());
+        //Water
+        StateMachine.AddTransition(WaterState, AirState, NotOnWaterNotGrounded());
 
-        //WaterSwim
-        StateMachine.AddTransition(WaterSwimState, AirState, NotOnWaterNotGrounded());
-        StateMachine.AddTransition(WaterSwimState, WaterIdleState, InputZero());
-
-        //StateMachine.AddAnyTransition(WaterIdleState, OnWater());
+        StateMachine.AddAnyTransition(WaterState, OnWater());
     }
 
     public void SetVelocityX(float velocity)

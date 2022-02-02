@@ -30,8 +30,12 @@ public class PlayerCore : MonoBehaviour
     public Transform jumpParticlesPrefab;
 
     [Header("Runtime Variables")]
-    public bool jumpBuffer = false;
     public float currentShootDelay;
+
+    public bool jumpBuffer = false;
     public float currentJumpBufferTime;
     public bool doubleJump = false;
+
+    public float currentInWaterTime;
+    public float currentDrowningTime;
 }
