@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoombaEntity : MonoBehaviour, IBumpable
+public class GoombaEntity : MonoBehaviour
 {
     public GoombaCore core;
     public GoombaData data;
@@ -47,10 +47,5 @@ public class GoombaEntity : MonoBehaviour, IBumpable
     public void AddStateMachineTransitions()
     {
 
-    }
-
-    public void OnBump(Transform bumper)
-    {
-        bumper.gameObject.GetComponent<PlayerEntity>().core.rgbd.velocity = (Vector3)bumper.gameObject.GetComponent<PlayerEntity>().core.rgbd.velocity + (transform.up * 15f);
     }
 }
