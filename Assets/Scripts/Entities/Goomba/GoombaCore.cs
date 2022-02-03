@@ -6,4 +6,5 @@ public class GoombaCore : MonoBehaviour
 {
     [Header("Components")]
     public Rigidbody2D rgbd;
+    public Transform[] waypoints;
 }

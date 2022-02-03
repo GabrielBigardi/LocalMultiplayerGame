@@ -1,18 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class GoombaData : MonoBehaviour
+[CreateAssetMenu(fileName = "New GoombaData", menuName = "Scriptable/GoombaData")]
+public class GoombaData : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public float moveSpeed;
 }

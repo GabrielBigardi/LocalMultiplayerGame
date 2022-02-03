@@ -9,7 +9,7 @@ TagManager:
   - BulletGreen
   - BulletRed
   - Bullet
-  - Lava
+  - Death
   layers:
   - Default
   - TransparentFX

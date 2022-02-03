@@ -18,7 +18,7 @@ public class GoombaEntity : MonoBehaviour
         InitializeStateMachine();
         AddStateMachineTransitions();
 
-        StateMachine.SetState(IdleState);
+        StateMachine.SetState(WalkState);
     }
 
     private void Update()

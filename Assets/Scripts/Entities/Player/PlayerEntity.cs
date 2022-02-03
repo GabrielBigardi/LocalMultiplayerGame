@@ -113,7 +113,7 @@ public class PlayerEntity : MonoBehaviour
             TakeDamage(5, true);
         }
 
-        if (collision.CompareTag("Lava"))
+        if (collision.CompareTag("Death"))
         {
             TakeDamage(core.playerHealth.maxHealth, false);
         }
@@ -142,6 +142,11 @@ public class PlayerEntity : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Death"))
+        {
+            TakeDamage(core.playerHealth.maxHealth, false);
+        }
+
         if (collision.gameObject.TryGetComponent(out IBumpable _IBumpable))
         {
             _IBumpable.OnBump(transform);
