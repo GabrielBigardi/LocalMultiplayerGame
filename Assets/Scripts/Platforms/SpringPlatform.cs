@@ -2,18 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpringPlatform : MonoBehaviour
+public class SpringPlatform : MonoBehaviour, IBumpable
 {
     [SerializeField] private float _launchSpeed;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public void OnBump(Transform bumper)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            var direction = transform.up;
-            print(direction);
-            collision.gameObject.GetComponent<PlayerEntity>().core.rgbd.velocity = (Vector3)collision.gameObject.GetComponent<PlayerEntity>().core.rgbd.velocity + (direction * _launchSpeed);
-            //collision.gameObject.GetComponent<PlayerEntity>().SetVelocityY(_launchSpeed);
-        }
+        bumper.gameObject.GetComponent<PlayerEntity>().core.rgbd.velocity = (Vector3)bumper.gameObject.GetComponent<PlayerEntity>().core.rgbd.velocity + (transform.up * _launchSpeed);
     }
 }

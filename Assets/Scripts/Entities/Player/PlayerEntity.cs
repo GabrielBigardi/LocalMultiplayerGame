@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SimpleSpriteAnimator;
 
-public class PlayerEntity : MonoBehaviour, IHealable
+public class PlayerEntity : MonoBehaviour
 {
     #region Player/States
     public PlayerCore core;
@@ -132,6 +132,19 @@ public class PlayerEntity : MonoBehaviour, IHealable
         if (collision.CompareTag("BulletGreen") && currentTeam == 0)
         {
             TakeDamage(collision.GetComponent<Bullet>().baseDamage, true);
+        }
+
+        if(collision.gameObject.TryGetComponent(out IBumpable _IBumpable))
+        {
+            _IBumpable.OnBump(transform);
+        }
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent(out IBumpable _IBumpable))
+        {
+            _IBumpable.OnBump(transform);
         }
     }
 
