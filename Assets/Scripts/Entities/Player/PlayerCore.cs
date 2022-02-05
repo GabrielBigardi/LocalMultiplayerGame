@@ -38,4 +38,6 @@ public class PlayerCore : MonoBehaviour
 
     public float currentInWaterTime;
     public float currentDrowningTime;
+
+    public Vector2 extraSpeed;
 }
