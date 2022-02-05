@@ -7,8 +7,8 @@ public class VanishingPlatform : MonoBehaviour
 {
     [SerializeField] private float _vanishSpeed;
     [SerializeField] private float _unvanishSpeed;
-    [SerializeField] private Collider2D _collider;
-    [SerializeField] private SpriteRenderer _spriteRenderer;
+    private Collider2D _collider;
+    private SpriteRenderer _spriteRenderer;
 
     bool fading = false;
 
@@ -18,7 +18,7 @@ public class VanishingPlatform : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    private async void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") && !fading)
         {
