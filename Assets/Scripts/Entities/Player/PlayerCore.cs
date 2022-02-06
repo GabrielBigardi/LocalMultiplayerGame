@@ -13,6 +13,9 @@ public class PlayerCore : MonoBehaviour
     public Collider2D col;
     public PlayerInputHandler playerInputHandler;
     public PlayerHealth playerHealth;
+
+    [Header("Outlined Text")]
+    public TMP_Text[] nameTextOutlines;
     public TMP_Text nameText;
 
     [Header("Player")]

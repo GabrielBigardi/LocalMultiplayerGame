@@ -22,7 +22,12 @@ public class PlayerAssign : MonoBehaviour
         players.Add(playerInput.transform);
 
         //TODO: assign player to a team
-        playerInput.transform.GetComponentInChildren<TMPro.TMP_Text>().SetText($"Player {players.FindIndex(x => x == playerInput.transform)}");
+        playerInput.transform.GetComponent<PlayerEntity>().core.nameText.SetText($"Player {players.FindIndex(x => x == playerInput.transform)}");
+        foreach (var nameText in playerInput.transform.GetComponent<PlayerEntity>().core.nameTextOutlines)
+        {
+            nameText.SetText($"Player {players.FindIndex(x => x == playerInput.transform)}");
+        }
+
         playerInput.transform.GetComponent<PlayerEntity>().SetTeam(nextTeamColor);
 
         nextTeamColor = nextTeamColor == 0 ? 1 : 0;
