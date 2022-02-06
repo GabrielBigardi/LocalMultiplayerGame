@@ -44,5 +44,6 @@ public class PlayerHealth : MonoBehaviour
 
         transform.position = new Vector3(-6.16f, -3.5f, 0f);
         Heal(maxHealth);
+        GetComponent<PlayerEntity>().SetVelocityY(0);
     }
 }
