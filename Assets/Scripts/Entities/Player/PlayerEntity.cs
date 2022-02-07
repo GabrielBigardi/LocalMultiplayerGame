@@ -318,9 +318,10 @@ public class PlayerEntity : MonoBehaviour
         {
             core.currentShootDelay = data.shootDelay;
             Transform bulletTransform = Instantiate(core.bulletPrefab, core.shootPoint.position, Quaternion.identity);
+            bulletTransform.gameObject.GetComponent<SpriteRenderer>().color = currentTeam == 0 ? Color.red : Color.green;
             bulletTransform.tag = currentTeam == 0 ? "BulletRed" : "BulletGreen";
             Rigidbody2D bulletRgbd = bulletTransform.gameObject.GetComponent<Rigidbody2D>();
-            bulletRgbd.velocity = new Vector2(core.model.localScale.x == -1f ? -10f : 10f, 0f);
+            bulletRgbd.velocity = new Vector2(core.model.localScale.x == -1f ? -20f : 20f, 0f);
             //bulletRgbd.velocity = new Vector2(core.spriteRenderer.flipX ? -10f : 10f, 0f);
         }
     }
