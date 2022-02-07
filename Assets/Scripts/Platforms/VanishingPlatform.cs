@@ -22,7 +22,17 @@ public class VanishingPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && !fading)
         {
-            if(collision.transform.position.y > transform.position.y + 0.5f)
+            Vector3 contactPoint = collision.contacts[0].point;
+            Vector3 center = _collider.bounds.center;
+
+            bool right = contactPoint.x > center.x;
+            bool left = contactPoint.x < center.x;
+            bool top = contactPoint.y > center.y;
+            bool bottom = contactPoint.y < center.y;
+
+            //Debug.Log($"Right: {right}, Left: {left}, Top: {top}, Bottom: {bottom}");
+
+            if (top)
             {
                 StartCoroutine(FadeTask()); 
             }
