@@ -22,7 +22,10 @@ public class VanishingPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && !fading)
         {
-            StartCoroutine(FadeTask()); 
+            if(collision.transform.position.y > transform.position.y + 0.5f)
+            {
+                StartCoroutine(FadeTask()); 
+            }
         }
     }
 
