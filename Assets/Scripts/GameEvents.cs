@@ -12,16 +12,16 @@ public class GameEvents : MonoBehaviour
         Instance = this;
     }
 
-    public event Action onDoorwayTriggerEnter;
-    public event Action onDoorwayTriggerExit;
+    public event Action<int> onDoorwayTriggerEnter;
+    public event Action<int> onDoorwayTriggerExit;
 
-    public void DoorwayTriggerEnter()
+    public void DoorwayTriggerEnter(int id)
     {
-        onDoorwayTriggerEnter?.Invoke();
+        onDoorwayTriggerEnter?.Invoke(id);
     }
 
-    public void DoorwayTriggerExit()
+    public void DoorwayTriggerExit(int id)
     {
-        onDoorwayTriggerExit?.Invoke();
+        onDoorwayTriggerExit?.Invoke(id);
     }
 }
