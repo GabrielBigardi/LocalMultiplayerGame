@@ -23,7 +23,7 @@ public class DoorController : MonoBehaviour
     {
         if(id == this.id)
         {
-            transform.DOMoveY(-3.6875f, 2f).SetEase(Ease.InOutSine);
+            transform.DOMoveY(-4.5f, 1f).SetEase(Ease.OutSine);
         }
     }
 
@@ -31,7 +31,7 @@ public class DoorController : MonoBehaviour
     {
         if (id == this.id)
         {
-            transform.DOMoveY(10.5f, 2f).SetEase(Ease.InOutSine);
+            transform.DOMoveY(10.5f, 1f).SetEase(Ease.OutSine);
         }
     }
 

@@ -4,15 +4,31 @@ using UnityEngine;
 
 public class DoorTriggerArea : MonoBehaviour
 {
-    public int id;
+    public int[] ids;
+
+    public Sprite untriggeredSprite;
+    public Sprite triggeredSprite;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameEvents.Instance.DoorwayTriggerEnter(id);
+        GetComponent<SpriteRenderer>().sprite = triggeredSprite;
+
+        StartCoroutine(DelayedDoorway());
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    private IEnumerator DelayedDoorway()
     {
-        GameEvents.Instance.DoorwayTriggerExit(id);
+        foreach (var id in ids)
+        {
+            GameEvents.Instance.DoorwayTriggerEnter(id);
+            yield return new WaitForSeconds(0.25f);
+        }
+        
     }
+
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    GetComponent<SpriteRenderer>().sprite = untriggeredSprite;
+    //    GameEvents.Instance.DoorwayTriggerExit(id);
+    //}
 }
