@@ -10,6 +10,10 @@ public class VanishingPlatform : MonoBehaviour
     private Collider2D _collider;
     private SpriteRenderer _spriteRenderer;
 
+    public Vector3 contactPoint;
+    public Vector3 center;
+    public Vector3 normalized;
+
     bool fading = false;
 
     private void Start()
@@ -22,17 +26,23 @@ public class VanishingPlatform : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") && !fading)
         {
-            Vector3 contactPoint = collision.contacts[0].point;
-            Vector3 center = _collider.bounds.center;
+            var entity = collision.gameObject.GetComponent<PlayerEntity>();
+            Vector3 _contactPoint = contactPoint = collision.contacts[0].point;
+            Vector3 _center = center = _collider.bounds.center;
+            Vector3 _distanceFromCenter = _contactPoint - _center;
+            Vector3 _normalized = new Vector3(_distanceFromCenter.x / _collider.bounds.size.x, _distanceFromCenter.y / _collider.bounds.size.y).normalized;
+            normalized = new Vector3(Mathf.RoundToInt(_normalized.x), Mathf.Round(_normalized.y));
 
             bool right = contactPoint.x > center.x;
             bool left = contactPoint.x < center.x;
             bool top = contactPoint.y > center.y;
             bool bottom = contactPoint.y < center.y;
 
+            Debug.Log($"Right: {right}, Left: {left}, Top: {top}, Bottom: {bottom}");
+
             //Debug.Log($"Right: {right}, Left: {left}, Top: {top}, Bottom: {bottom}");
 
-            if (top)
+            if (top && entity.core.rgbd.velocity.y == 0f)
             {
                 StartCoroutine(FadeTask()); 
             }
@@ -66,5 +76,17 @@ public class VanishingPlatform : MonoBehaviour
 
         _collider.enabled = true;
         fading = false;
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(contactPoint, 0.1f);
+        
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(center, 0.1f);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(normalized, 0.1f);
     }
 }

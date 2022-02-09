@@ -21,7 +21,7 @@ public class DoorTriggerArea : MonoBehaviour
         foreach (var id in ids)
         {
             GameEvents.Instance.DoorwayTriggerEnter(id);
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.1f);
         }
         
     }

@@ -29,6 +29,7 @@ public class PlayerAssign : MonoBehaviour
         }
 
         playerInput.transform.GetComponent<PlayerEntity>().SetTeam(nextTeamColor);
+        playerInput.transform.position = new Vector3(-6.16f, -3.5f, 0f);
 
         nextTeamColor = nextTeamColor == 0 ? 1 : 0;
     }
