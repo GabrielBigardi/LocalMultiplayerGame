@@ -78,15 +78,15 @@ public class VanishingPlatform : MonoBehaviour
         fading = false;
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(contactPoint, 0.1f);
-        
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(center, 0.1f);
-
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(normalized, 0.1f);
-    }
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireSphere(contactPoint, 0.1f);
+    //    
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawWireSphere(center, 0.1f);
+    //
+    //    Gizmos.color = Color.yellow;
+    //    Gizmos.DrawWireSphere(normalized, 0.1f);
+    //}
 }
