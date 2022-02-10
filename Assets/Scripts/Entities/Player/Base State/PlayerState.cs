@@ -4,22 +4,31 @@ using UnityEngine;
 
 public abstract class PlayerState : IState
 {
-    public void Tick()
+    protected readonly StateMachine _stateMachine;
+    protected readonly PlayerEntity _playerEntity;
+
+    public PlayerState(StateMachine stateMachine, PlayerEntity playerEntity)
+    {
+        _stateMachine = stateMachine;
+        _playerEntity = playerEntity;
+    }
+
+    public virtual void Tick()
     {
 
     }
 
-    public void FixedTick()
+    public virtual void FixedTick()
     {
 
     }
 
-    public void OnEnter()
+    public virtual void OnEnter()
     {
 
     }
 
-    public void OnExit()
+    public virtual void OnExit()
     {
 
     }

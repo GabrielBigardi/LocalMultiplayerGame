@@ -40,7 +40,6 @@ public class PlayerHealth : MonoBehaviour
     public void Die()
     {
         var teamId = GetComponent<PlayerEntity>().currentTeam;
-        if(ScoreManager.Instance != null) ScoreManager.Instance.AddScore(teamId, 1);
 
         transform.position = new Vector3(-6.16f, -3.5f, 0f);
         Heal(maxHealth);

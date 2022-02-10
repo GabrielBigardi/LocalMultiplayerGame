@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class DoorController : MonoBehaviour
+public class ButtonController : MonoBehaviour
 {
     public int id;
 
     private void Start()
     {
-        GameEvents.Instance.onDoorwayTriggerEnter += DoorwayOpen;
-        GameEvents.Instance.onDoorwayTriggerExit += DoorwayExit;
+        GameEvents.Instance.onButtonTriggerEnter += ButtonPress;
+        GameEvents.Instance.onButtonTriggerExit += ButtonRelease;
     }
 
     private void OnDestroy()
     {
-        GameEvents.Instance.onDoorwayTriggerEnter -= DoorwayOpen;
-        GameEvents.Instance.onDoorwayTriggerExit -= DoorwayExit;
+        GameEvents.Instance.onButtonTriggerEnter -= ButtonPress;
+        GameEvents.Instance.onButtonTriggerExit -= ButtonRelease;
     }
 
-    private void DoorwayOpen(int id)
+    private void ButtonPress(int id)
     {
         if(id == this.id)
         {
@@ -27,7 +27,7 @@ public class DoorController : MonoBehaviour
         }
     }
 
-    private void DoorwayExit(int id)
+    private void ButtonRelease(int id)
     {
         if (id == this.id)
         {

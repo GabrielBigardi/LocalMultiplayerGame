@@ -2,5 +2,5 @@
 
 public interface IBumpable
 {
-	void OnBump(Transform bumper);
+	void OnBump(Transform _bumper);
 }

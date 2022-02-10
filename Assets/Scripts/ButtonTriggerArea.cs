@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorTriggerArea : MonoBehaviour
+public class ButtonTriggerArea : MonoBehaviour
 {
     public int[] ids;
 
@@ -13,22 +13,15 @@ public class DoorTriggerArea : MonoBehaviour
     {
         GetComponent<SpriteRenderer>().sprite = triggeredSprite;
 
-        StartCoroutine(DelayedDoorway());
+        StartCoroutine(DelayedButtonPress());
     }
 
-    private IEnumerator DelayedDoorway()
+    private IEnumerator DelayedButtonPress()
     {
         foreach (var id in ids)
         {
-            GameEvents.Instance.DoorwayTriggerEnter(id);
+            GameEvents.Instance.ButtonTriggerEnter(id);
             yield return new WaitForSeconds(0.1f);
         }
-        
     }
-
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    GetComponent<SpriteRenderer>().sprite = untriggeredSprite;
-    //    GameEvents.Instance.DoorwayTriggerExit(id);
-    //}
 }

@@ -2,19 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerGroundedState : IState
+public class PlayerGroundedState : PlayerState
 {
-    protected readonly StateMachine _stateMachine;
-    protected readonly PlayerEntity _playerEntity;
+    public PlayerGroundedState(StateMachine stateMachine, PlayerEntity playerEntity) : base(stateMachine, playerEntity) { }
 
-    public PlayerGroundedState(StateMachine stateMachine, PlayerEntity playerEntity)
+    public override void Tick()
     {
-        _stateMachine = stateMachine;
-        _playerEntity = playerEntity;
-    }
+        base.Tick();
 
-    public virtual void Tick()
-    {
         _playerEntity.JumpCheck();
         _playerEntity.Shoot();
 
@@ -24,18 +19,20 @@ public class PlayerGroundedState : IState
         }
     }
 
-    public virtual void FixedTick()
+    public override void FixedTick()
     {
-
+        base.FixedTick();
     }
 
-    public virtual void OnEnter()
+    public override void OnEnter()
     {
+        base.OnEnter();
+
         _playerEntity.core.doubleJump = false;
     }
 
-    public virtual void OnExit()
+    public override void OnExit()
     {
-
+        base.OnExit();
     }
 }

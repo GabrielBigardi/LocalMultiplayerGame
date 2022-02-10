@@ -2,10 +2,7 @@ using UnityEngine;
 
 public class PlayerWalkState : PlayerGroundedState
 {
-    public PlayerWalkState(StateMachine stateMachine, PlayerEntity playerEntity) : base(stateMachine, playerEntity)
-    {
-
-    }
+    public PlayerWalkState(StateMachine stateMachine, PlayerEntity playerEntity) : base(stateMachine, playerEntity) { }
     
     public override void Tick()
     {

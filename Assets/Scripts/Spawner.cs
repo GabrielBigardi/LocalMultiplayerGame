@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public float spawnTime;
+    [SerializeField] private float _spawnTime = 5f;
     public Transform prefabToSpawn;
     public Transform spawnedObject;
 
     private void Start()
     {
-        InvokeRepeating("SpawnObject", 0f, spawnTime);
+        InvokeRepeating("SpawnObject", 0f, _spawnTime);
     }
 
     public void SpawnObject()

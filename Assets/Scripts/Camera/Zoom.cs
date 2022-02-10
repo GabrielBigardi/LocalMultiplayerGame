@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Zoom : MonoBehaviour
 {
-    [SerializeField]
     private Camera ppwzCamera;
     private PerfectPixelCameraWithZoom ppwz;
 
     void Start()
     {
+        ppwzCamera = GetComponent<Camera>();
         ppwz = ppwzCamera.GetComponent<PerfectPixelCameraWithZoom>();
     }
 

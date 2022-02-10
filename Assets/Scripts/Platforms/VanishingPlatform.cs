@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class VanishingPlatform : MonoBehaviour
 {
-    [SerializeField] private float _vanishSpeed;
-    [SerializeField] private float _unvanishSpeed;
+    [SerializeField] private float _vanishSpeed = 0.008f;
+    [SerializeField] private float _unvanishSpeed = 0.002f;
     private Collider2D _collider;
     private SpriteRenderer _spriteRenderer;
 
