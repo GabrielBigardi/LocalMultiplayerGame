@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth;
     public int curHealth;
     public Image healthBar;
+    public GameObject healthBarParent;
 
     private void Start()
     {
@@ -20,7 +21,7 @@ public class PlayerHealth : MonoBehaviour
         if (curHealth <= 0)
         {
             curHealth = 0;
-            Die();
+            //Die();
         }
 
         healthBar.fillAmount = (float)curHealth / maxHealth;

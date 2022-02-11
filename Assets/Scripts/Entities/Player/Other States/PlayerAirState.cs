@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using SimpleSpriteAnimator;
+using System.Collections.Generic;
 
 public class PlayerAirState : PlayerState
 {
@@ -26,8 +28,10 @@ public class PlayerAirState : PlayerState
 
         _playerEntity.currentState = "Air";
         _playerEntity.PlayAnimation("Air");
+
         _playerEntity.core.currentInWaterTime = 0f;
         _playerEntity.core.currentDrowningTime = 0f;
+
     }
 
     public override void OnExit()

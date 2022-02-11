@@ -44,9 +44,14 @@ namespace SimpleSpriteAnimator
             {
                 SpriteAnimationFrame currentFrame = spriteAnimationHelper.UpdateAnimation(Time.deltaTime);
 
-                if (currentFrame != null && currentFrame != previousAnimationFrame)
+                //if (currentFrame != null && currentFrame != previousAnimationFrame)
+                //{
+                //    previousAnimationFrame = currentFrame;
+                //    spriteRenderer.sprite = currentFrame.Sprite;
+                //}
+
+                if(currentFrame != null)
                 {
-                    previousAnimationFrame = currentFrame;
                     spriteRenderer.sprite = currentFrame.Sprite;
                 }
             }
@@ -72,8 +77,18 @@ namespace SimpleSpriteAnimator
             state = SpriteAnimationState.Playing;
             spriteAnimationHelper.ChangeAnimation(animation);
         }
- 
-        private SpriteAnimation GetAnimationByName(string name)
+
+        public void Pause()
+        {
+            state = SpriteAnimationState.Paused;
+        }
+
+        public void Resume()
+        {
+            state = SpriteAnimationState.Playing;
+        }
+
+        public SpriteAnimation GetAnimationByName(string name)
         {
             for (int i = 0; i < spriteAnimations.Count; i++)
             {

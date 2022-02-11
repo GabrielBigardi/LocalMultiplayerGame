@@ -18,6 +18,7 @@ public class PlayerEntity : MonoBehaviour
     public PlayerAirState AirState { get; private set; }
     public PlayerHurtState HurtState { get; private set; }
     public PlayerWaterState WaterState { get; private set; }
+    public PlayerDeathState DeathState { get; private set; }
     #endregion
 
     #region Transitions Func
@@ -44,6 +45,8 @@ public class PlayerEntity : MonoBehaviour
 
     Func<bool> Running() => () => core.playerInputHandler.holdingRun && core.playerInputHandler.mov.x != 0f;
     Func<bool> NotRunning() => () => !core.playerInputHandler.holdingRun || core.playerInputHandler.mov.x == 0f;
+
+    Func<bool> IsDead() => () => core.playerHealth.curHealth <= 0;
     #endregion
 
     public bool IsGrounded => Physics2D.OverlapCircle(core.groundCheckPoint.position, 0.02f, data.groundLayer);
@@ -74,24 +77,6 @@ public class PlayerEntity : MonoBehaviour
         core.currentShootDelay -= Time.deltaTime;
         core.currentJumpBufferTime -= Time.deltaTime;
 
-        //if (IsOnWaterSuperState)
-        //{
-        //    core.currentInWaterTime += Time.deltaTime;
-        //    if(core.currentInWaterTime >= 4f)
-        //    {
-        //        core.currentDrowningTime += Time.deltaTime;
-        //        if(core.currentDrowningTime >= 1f)
-        //        {
-        //            TakeDamage(5,false);
-        //            core.currentDrowningTime = 0f;
-        //        }
-        //    }
-        //}
-        //else
-        //{
-        //    core.currentInWaterTime = 0f;
-        //}
-
         if (core.currentJumpBufferTime <= 0)
         {
             core.jumpBuffer = false;
@@ -110,7 +95,7 @@ public class PlayerEntity : MonoBehaviour
     {
         if (collision.CompareTag("Damage"))
         {
-            TakeDamage(5, true);
+            TakeDamage(25, true);
         }
 
         if (collision.CompareTag("Death"))
@@ -174,6 +159,8 @@ public class PlayerEntity : MonoBehaviour
 
         WaterState = new PlayerWaterState(StateMachine, this);
 
+        DeathState = new PlayerDeathState(StateMachine, this);
+
     }
 
     public void AddStateMachineTransitions()
@@ -197,6 +184,11 @@ public class PlayerEntity : MonoBehaviour
         StateMachine.AddTransition(HurtState, WalkState, GroundedInputNotZeroLastFrame());
         StateMachine.AddTransition(HurtState, AirState, NotGroundedLastFrame());
 
+        ////Death
+        //StateMachine.AddTransition(DeathState, IdleState, GroundedInputZeroLastFrame());
+        //StateMachine.AddTransition(DeathState, WalkState, GroundedInputNotZeroLastFrame());
+        //StateMachine.AddTransition(DeathState, AirState, NotGroundedLastFrame());
+
         //Air
         StateMachine.AddTransition(AirState, IdleState, GroundedInputXZero());
         StateMachine.AddTransition(AirState, WalkState, GroundedInputXNotZero());
@@ -205,6 +197,7 @@ public class PlayerEntity : MonoBehaviour
         StateMachine.AddTransition(WaterState, AirState, NotOnWaterNotGrounded());
 
         StateMachine.AddAnyTransition(WaterState, OnWater());
+        StateMachine.AddAnyTransition(DeathState, IsDead());
     }
 
     public void SetVelocityX(float velocity)
@@ -343,6 +336,34 @@ public class PlayerEntity : MonoBehaviour
     {
         currentTeam = teamId;
         core.nameText.color = teamId == 0 ? Color.red : Color.green;
+    }
+
+    public void ShowNameText()
+    {
+        core.nameText.gameObject.SetActive(true);
+        foreach (var nameTextOutline in core.nameTextOutlines)
+        {
+            nameTextOutline.gameObject.SetActive(true);
+        }
+    }
+
+    public void HideNameText()
+    {
+        core.nameText.gameObject.SetActive(false);
+        foreach (var nameTextOutline in core.nameTextOutlines)
+        {
+            nameTextOutline.gameObject.SetActive(false);
+        }
+    }
+
+    public void ShowHealthBar()
+    {
+        core.playerHealth.healthBarParent.SetActive(true);
+    }
+
+    public void HideHealthBar()
+    {
+        core.playerHealth.healthBarParent.SetActive(false);
     }
 
     private void OnDrawGizmos()
