@@ -1,4 +1,4 @@
-﻿namespace SimpleSpriteAnimator
+﻿namespace GabrielBigardi.SpriteAnimator.Enums
 {
     public enum SpriteAnimationState
     {

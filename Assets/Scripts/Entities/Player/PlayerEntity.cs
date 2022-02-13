@@ -1,8 +1,7 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using SimpleSpriteAnimator;
+using GabrielBigardi.SpriteAnimator.Scriptables;
+using GabrielBigardi.SpriteAnimator.Animator;
 
 public class PlayerEntity : MonoBehaviour
 {

@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using SimpleSpriteAnimator;
-using System.Collections.Generic;
 
 public class PlayerAirState : PlayerState
 {

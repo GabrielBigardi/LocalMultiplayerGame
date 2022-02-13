@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
-using System.Collections;
+using GabrielBigardi.SpriteAnimator.Scriptables;
+using GabrielBigardi.SpriteAnimator.Animation;
+using GabrielBigardi.SpriteAnimator.Enums;
 
-namespace SimpleSpriteAnimator
+namespace GabrielBigardi.SpriteAnimator.Helpers
 {
     public class SpriteAnimationHelper
     {

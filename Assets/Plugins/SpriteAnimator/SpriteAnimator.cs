@@ -1,8 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+using GabrielBigardi.SpriteAnimator.Scriptables;
+using GabrielBigardi.SpriteAnimator.Enums;
+using GabrielBigardi.SpriteAnimator.Helpers;
+using GabrielBigardi.SpriteAnimator.Animation;
 
-namespace SimpleSpriteAnimator
+namespace GabrielBigardi.SpriteAnimator.Animator
 {
     public class SpriteAnimator : MonoBehaviour
     {

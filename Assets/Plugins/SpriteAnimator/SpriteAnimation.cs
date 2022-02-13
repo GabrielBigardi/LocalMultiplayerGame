@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System;
-using UnityEngine.Events;
-using UnityEngine.Serialization;
+using GabrielBigardi.SpriteAnimator.Animation;
+using GabrielBigardi.SpriteAnimator.Enums;
 
-namespace SimpleSpriteAnimator
+namespace GabrielBigardi.SpriteAnimator.Scriptables
 {
     [Serializable]
     [CreateAssetMenu]

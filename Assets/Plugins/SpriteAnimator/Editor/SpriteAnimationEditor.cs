@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
 using UnityEditorInternal;
 using UnityEditor;
+using GabrielBigardi.SpriteAnimator.Scriptables;
+using GabrielBigardi.SpriteAnimator.Animation;
+using GabrielBigardi.SpriteAnimator.Helpers;
+using GabrielBigardi.SpriteAnimator.Enums;
 
-namespace SimpleSpriteAnimator
+namespace GabrielBigardi.SpriteAnimator.Editors
 {
     [CustomEditor(typeof(SpriteAnimation))]
     public class SpriteAnimationEditor : Editor
