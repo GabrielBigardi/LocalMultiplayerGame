@@ -30,7 +30,6 @@ public class PlayerDeathState : PlayerState
     {
         base.OnEnter();
 
-        Debug.Log("Death State Enter");
         _playerEntity.PlayAnimation("Death");
         _playerEntity.SetFrozen(true);
         _playerEntity.HideNameText();
@@ -41,7 +40,6 @@ public class PlayerDeathState : PlayerState
     {
         base.OnExit();
 
-        Debug.Log("Death State Exit");
         _playerEntity.SetFrozen(false);
         _playerEntity.ShowNameText();
         _playerEntity.ShowHealthBar();

@@ -964,16 +964,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f68ed8ddcd58d140a37806eca2b5694, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteAnimations:
-  - {fileID: 11400000, guid: 186b6e8d34df83946a5567ba99c5670c, type: 2}
-  - {fileID: 11400000, guid: 3e22c86da12b81244a4c090c29d62fff, type: 2}
+  _spriteAnimations:
   - {fileID: 11400000, guid: 388ca60cb4b1f9443bb85bb99d1c5b5b, type: 2}
-  - {fileID: 11400000, guid: 1766b19d3cb674046b4622a1b96ff2fe, type: 2}
-  - {fileID: 11400000, guid: 1fdf7bc1722cacd4e9204f34486429fc, type: 2}
-  - {fileID: 11400000, guid: 5772b8908603ecd45808a0c0317d4a10, type: 2}
-  - {fileID: 11400000, guid: 9b5e35a4053a8634b9d32e73292d1e20, type: 2}
   - {fileID: 11400000, guid: b74b051e3d33e5f4984e1c6804342dfc, type: 2}
-  playAutomatically: 0
+  - {fileID: 11400000, guid: 1766b19d3cb674046b4622a1b96ff2fe, type: 2}
+  - {fileID: 11400000, guid: 186b6e8d34df83946a5567ba99c5670c, type: 2}
+  - {fileID: 11400000, guid: 5772b8908603ecd45808a0c0317d4a10, type: 2}
+  - {fileID: 11400000, guid: 3e22c86da12b81244a4c090c29d62fff, type: 2}
+  - {fileID: 11400000, guid: 1fdf7bc1722cacd4e9204f34486429fc, type: 2}
+  - {fileID: 11400000, guid: 9b5e35a4053a8634b9d32e73292d1e20, type: 2}
+  _playAutomatically: 0
 --- !u!114 &5602576768291109054
 MonoBehaviour:
   m_ObjectHideFlags: 0

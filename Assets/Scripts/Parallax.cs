@@ -2,8 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum UpdateMode
+{
+    Update,
+    FixedUpdate,
+    LateUpdate
+}
+
 public class Parallax : MonoBehaviour
 {
+    public UpdateMode updateMode;
+
     public Camera cam;
     public Transform subject;
 
@@ -20,12 +29,31 @@ public class Parallax : MonoBehaviour
     {
         startPosition = transform.position;
         startZ = transform.position.z;
+
+        //Application.targetFrameRate = 60;
     }
 
     private void Update()
     {
+        if (updateMode != UpdateMode.Update) return;
+
         Vector2 newPos = startPosition + travel * parallaxFactor;
         transform.position = new Vector3(newPos.x, newPos.y, startZ);
+    }
 
+    private void FixedUpdate()
+    {
+        if (updateMode != UpdateMode.FixedUpdate) return;
+
+        Vector2 newPos = startPosition + travel * parallaxFactor;
+        transform.position = new Vector3(newPos.x, newPos.y, startZ);
+    }
+
+    private void LateUpdate()
+    {
+        if (updateMode != UpdateMode.LateUpdate) return;
+
+        Vector2 newPos = startPosition + travel * parallaxFactor;
+        transform.position = new Vector3(newPos.x, newPos.y, startZ);
     }
 }

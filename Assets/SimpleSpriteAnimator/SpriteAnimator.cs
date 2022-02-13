@@ -6,33 +6,37 @@ namespace SimpleSpriteAnimator
 {
     public class SpriteAnimator : MonoBehaviour
     {
-        [SerializeField] private List<SpriteAnimation> spriteAnimations = new List<SpriteAnimation>();
-        [SerializeField] private bool playAutomatically = true;
+        [SerializeField] private List<SpriteAnimation> _spriteAnimations = new List<SpriteAnimation>();
+        [SerializeField] private bool _playAutomatically = true;
 
-        public SpriteAnimation DefaultAnimation => spriteAnimations.Count > 0 ? spriteAnimations[0] : null;
-        public SpriteAnimation CurrentAnimation => spriteAnimationHelper.CurrentAnimation;
+        public SpriteAnimation DefaultAnimation => _spriteAnimations.Count > 0 ? _spriteAnimations[0] : null;
+        public SpriteAnimation CurrentAnimation => _spriteAnimationHelper.CurrentAnimation;
 
-        public bool Playing => state == SpriteAnimationState.Playing;
-        public bool Paused => state == SpriteAnimationState.Paused;
-        public int CurrentFrame => spriteAnimationHelper.GetCurrentFrame();
+        public bool Playing => _state == SpriteAnimationState.Playing;
+        public bool Paused => _state == SpriteAnimationState.Paused;
+        public int CurrentFrame => _spriteAnimationHelper.GetCurrentFrame();
         public bool IsLastFrame => CurrentFrame == CurrentAnimation.Frames.Count - 1;
 
-        private SpriteRenderer spriteRenderer;
-        private SpriteAnimationHelper spriteAnimationHelper;
-        private SpriteAnimationState state = SpriteAnimationState.Playing;
-        private SpriteAnimationFrame previousAnimationFrame;
+        private SpriteRenderer _spriteRenderer;
+        private SpriteAnimationHelper _spriteAnimationHelper;
+        private SpriteAnimationState _state = SpriteAnimationState.Playing;
+        private SpriteAnimationFrame _previousAnimationFrame;
+
+        public Action SpriteChanged;
+        public Action<SpriteAnimation> AnimationPlayed;
+        public Action<SpriteAnimation> AnimationPaused;
 
         private void Awake()
         {
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            if(spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+            if(_spriteRenderer == null) _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
-            spriteAnimationHelper = new SpriteAnimationHelper();
+            _spriteAnimationHelper = new SpriteAnimationHelper();
         }
 
         private void Start()
         {
-            if (playAutomatically)
+            if (_playAutomatically)
             {
                 Play(DefaultAnimation);
             }
@@ -42,18 +46,26 @@ namespace SimpleSpriteAnimator
         {
             if (Playing)
             {
-                SpriteAnimationFrame currentFrame = spriteAnimationHelper.UpdateAnimation(Time.deltaTime);
+                SpriteAnimationFrame currentFrame = _spriteAnimationHelper.UpdateAnimation(Time.deltaTime);
 
-                //if (currentFrame != null && currentFrame != previousAnimationFrame)
-                //{
-                //    previousAnimationFrame = currentFrame;
-                //    spriteRenderer.sprite = currentFrame.Sprite;
-                //}
-
-                if(currentFrame != null)
+                //Change sprite every LateUpdate tick, but call sprite changed event based on frame change
+                if (currentFrame != null)
                 {
-                    spriteRenderer.sprite = currentFrame.Sprite;
+                    _spriteRenderer.sprite = currentFrame.Sprite;
+
+                    if(currentFrame != _previousAnimationFrame)
+                    {
+                        _previousAnimationFrame = currentFrame;
+                        SpriteChanged?.Invoke();
+                    }
                 }
+
+                //Change sprite only on frame change
+                //if (currentFrame != null && currentFrame != _previousAnimationFrame)
+                //{
+                //    _previousAnimationFrame = currentFrame;
+                //    _spriteRenderer.sprite = currentFrame.Sprite;
+                //}
             }
         }
 
@@ -61,7 +73,7 @@ namespace SimpleSpriteAnimator
         {
             if (CurrentAnimation == null)
             {
-                spriteAnimationHelper.ChangeAnimation(DefaultAnimation);
+                _spriteAnimationHelper.ChangeAnimation(DefaultAnimation);
             }
 
             Play(CurrentAnimation);
@@ -74,27 +86,29 @@ namespace SimpleSpriteAnimator
 
         public void Play(SpriteAnimation animation)
         {
-            state = SpriteAnimationState.Playing;
-            spriteAnimationHelper.ChangeAnimation(animation);
+            _state = SpriteAnimationState.Playing;
+            _spriteAnimationHelper.ChangeAnimation(animation);
+            AnimationPlayed?.Invoke(animation);
         }
 
         public void Pause()
         {
-            state = SpriteAnimationState.Paused;
+            _state = SpriteAnimationState.Paused;
+            AnimationPaused?.Invoke(CurrentAnimation);
         }
 
         public void Resume()
         {
-            state = SpriteAnimationState.Playing;
+            _state = SpriteAnimationState.Playing;
         }
 
         public SpriteAnimation GetAnimationByName(string name)
         {
-            for (int i = 0; i < spriteAnimations.Count; i++)
+            for (int i = 0; i < _spriteAnimations.Count; i++)
             {
-                if (spriteAnimations[i].Name == name)
+                if (_spriteAnimations[i].Name == name)
                 {
-                    return spriteAnimations[i];
+                    return _spriteAnimations[i];
                 }
             }
 

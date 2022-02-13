@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 namespace SimpleSpriteAnimator
 {
@@ -10,38 +11,14 @@ namespace SimpleSpriteAnimator
     [CreateAssetMenu]
     public class SpriteAnimation : ScriptableObject
     {
-        [SerializeField]
-        private string animationName = "animation";
+        public string animationName = "animation";
 
-        public string Name
-        {
-            get { return animationName; }
-            set { animationName = value; }
-        }
+        public string Name { get; set; }
 
-        [SerializeField]
-        private int fps = 30;
+        public int FPS { get; set; }
 
-        public int FPS
-        {
-            get { return fps; }
-            set { fps = value; }
-        }
+        public List<SpriteAnimationFrame> Frames { get; private set; }
 
-        [SerializeField]
-        private List<SpriteAnimationFrame> frames = new List<SpriteAnimationFrame>();
-
-        public List<SpriteAnimationFrame> Frames
-        {
-            get { return frames; }
-        }
-
-        [SerializeField]
-        private SpriteAnimationType spriteAnimationType = SpriteAnimationType.Looping;
-        public SpriteAnimationType SpriteAnimationType
-        {
-            get { return spriteAnimationType; }
-            set { spriteAnimationType = value; }
-        }
+        public SpriteAnimationType SpriteAnimationType { get; set; }
     }
 }

@@ -69,6 +69,32 @@ public class PlayerEntity : MonoBehaviour
 
         core.col = GetComponent<Collider2D>();
         core.currentShootDelay = data.shootDelay;
+
+        core.anim.SpriteChanged += OnSpriteChanged;
+        core.anim.AnimationPlayed += OnAnimationPlayed;
+        core.anim.AnimationPaused += OnAnimationPaused;
+    }
+
+    private void OnDestroy()
+    {
+        core.anim.SpriteChanged -= OnSpriteChanged;
+        core.anim.AnimationPlayed -= OnAnimationPlayed;
+        core.anim.AnimationPaused -= OnAnimationPaused;
+    }
+
+    public void OnSpriteChanged()
+    {
+        Debug.Log("Sprite Changed Event");
+    }
+
+    public void OnAnimationPlayed(SpriteAnimation animation)
+    {
+        Debug.Log($"Animation Played Event: {animation.Name}");
+    }
+
+    public void OnAnimationPaused(SpriteAnimation animation)
+    {
+        Debug.Log($"Animation Paused Event: {animation.Name}");
     }
 
     private void Update()
