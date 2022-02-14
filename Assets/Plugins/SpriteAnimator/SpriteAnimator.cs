@@ -1,122 +1,115 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
-using GabrielBigardi.SpriteAnimator.Scriptables;
-using GabrielBigardi.SpriteAnimator.Enums;
-using GabrielBigardi.SpriteAnimator.Helpers;
-using GabrielBigardi.SpriteAnimator.Animation;
 
-namespace GabrielBigardi.SpriteAnimator.Animator
+public class SpriteAnimator : MonoBehaviour
 {
-    public class SpriteAnimator : MonoBehaviour
+    [SerializeField] private List<SpriteAnimation> _spriteAnimations = new List<SpriteAnimation>();
+    [SerializeField] private bool _playAutomatically = true;
+
+    public SpriteAnimation DefaultAnimation => _spriteAnimations.Count > 0 ? _spriteAnimations[0] : null;
+    public SpriteAnimation CurrentAnimation => _spriteAnimationHelper.CurrentAnimation;
+
+    public bool Playing => _state == SpriteAnimationState.Playing;
+    public bool Paused => _state == SpriteAnimationState.Paused;
+    public int CurrentFrame => _spriteAnimationHelper.GetCurrentFrame();
+    public bool IsLastFrame => CurrentFrame == CurrentAnimation.Frames.Count - 1;
+
+    private SpriteRenderer _spriteRenderer;
+    private SpriteAnimationHelper _spriteAnimationHelper;
+    private SpriteAnimationState _state = SpriteAnimationState.Playing;
+    private SpriteAnimationFrame _previousAnimationFrame;
+
+    public Action SpriteChanged;
+    public Action<SpriteAnimation> AnimationPlayed;
+    public Action<SpriteAnimation> AnimationPaused;
+
+    private void Awake()
     {
-        [SerializeField] private List<SpriteAnimation> _spriteAnimations = new List<SpriteAnimation>();
-        [SerializeField] private bool _playAutomatically = true;
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        if(_spriteRenderer == null) _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
 
-        public SpriteAnimation DefaultAnimation => _spriteAnimations.Count > 0 ? _spriteAnimations[0] : null;
-        public SpriteAnimation CurrentAnimation => _spriteAnimationHelper.CurrentAnimation;
+        _spriteAnimationHelper = new SpriteAnimationHelper();
+    }
 
-        public bool Playing => _state == SpriteAnimationState.Playing;
-        public bool Paused => _state == SpriteAnimationState.Paused;
-        public int CurrentFrame => _spriteAnimationHelper.GetCurrentFrame();
-        public bool IsLastFrame => CurrentFrame == CurrentAnimation.Frames.Count - 1;
-
-        private SpriteRenderer _spriteRenderer;
-        private SpriteAnimationHelper _spriteAnimationHelper;
-        private SpriteAnimationState _state = SpriteAnimationState.Playing;
-        private SpriteAnimationFrame _previousAnimationFrame;
-
-        public Action SpriteChanged;
-        public Action<SpriteAnimation> AnimationPlayed;
-        public Action<SpriteAnimation> AnimationPaused;
-
-        private void Awake()
+    private void Start()
+    {
+        if (_playAutomatically)
         {
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-            if(_spriteRenderer == null) _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-
-            _spriteAnimationHelper = new SpriteAnimationHelper();
+            Play(DefaultAnimation);
         }
+    }
 
-        private void Start()
+    private void LateUpdate()
+    {
+        if (Playing)
         {
-            if (_playAutomatically)
-            {
-                Play(DefaultAnimation);
-            }
-        }
+            SpriteAnimationFrame currentFrame = _spriteAnimationHelper.UpdateAnimation(Time.deltaTime);
 
-        private void LateUpdate()
-        {
-            if (Playing)
+            //Change sprite every LateUpdate tick, but call sprite changed event based on frame change
+            if (currentFrame != null)
             {
-                SpriteAnimationFrame currentFrame = _spriteAnimationHelper.UpdateAnimation(Time.deltaTime);
+                _spriteRenderer.sprite = currentFrame.Sprite;
 
-                //Change sprite every LateUpdate tick, but call sprite changed event based on frame change
-                if (currentFrame != null)
+                if(currentFrame != _previousAnimationFrame)
                 {
-                    _spriteRenderer.sprite = currentFrame.Sprite;
-
-                    if(currentFrame != _previousAnimationFrame)
-                    {
-                        _previousAnimationFrame = currentFrame;
-                        SpriteChanged?.Invoke();
-                    }
-                }
-
-                //Change sprite only on frame change
-                //if (currentFrame != null && currentFrame != _previousAnimationFrame)
-                //{
-                //    _previousAnimationFrame = currentFrame;
-                //    _spriteRenderer.sprite = currentFrame.Sprite;
-                //}
-            }
-        }
-
-        public void Play()
-        {
-            if (CurrentAnimation == null)
-            {
-                _spriteAnimationHelper.ChangeAnimation(DefaultAnimation);
-            }
-
-            Play(CurrentAnimation);
-        }
-
-        public void Play(string name)
-        {
-            Play(GetAnimationByName(name));
-        }
-
-        public void Play(SpriteAnimation animation)
-        {
-            _state = SpriteAnimationState.Playing;
-            _spriteAnimationHelper.ChangeAnimation(animation);
-            AnimationPlayed?.Invoke(animation);
-        }
-
-        public void Pause()
-        {
-            _state = SpriteAnimationState.Paused;
-            AnimationPaused?.Invoke(CurrentAnimation);
-        }
-
-        public void Resume()
-        {
-            _state = SpriteAnimationState.Playing;
-        }
-
-        public SpriteAnimation GetAnimationByName(string name)
-        {
-            for (int i = 0; i < _spriteAnimations.Count; i++)
-            {
-                if (_spriteAnimations[i].Name == name)
-                {
-                    return _spriteAnimations[i];
+                    _previousAnimationFrame = currentFrame;
+                    SpriteChanged?.Invoke();
                 }
             }
 
-            return null;
+            //Change sprite only on frame change
+            //if (currentFrame != null && currentFrame != _previousAnimationFrame)
+            //{
+            //    _previousAnimationFrame = currentFrame;
+            //    _spriteRenderer.sprite = currentFrame.Sprite;
+            //}
         }
+    }
+
+    public void Play()
+    {
+        if (CurrentAnimation == null)
+        {
+            _spriteAnimationHelper.ChangeAnimation(DefaultAnimation);
+        }
+
+        Play(CurrentAnimation);
+    }
+
+    public void Play(string name)
+    {
+        Play(GetAnimationByName(name));
+    }
+
+    public void Play(SpriteAnimation animation)
+    {
+        _state = SpriteAnimationState.Playing;
+        _spriteAnimationHelper.ChangeAnimation(animation);
+        AnimationPlayed?.Invoke(animation);
+    }
+
+    public void Pause()
+    {
+        _state = SpriteAnimationState.Paused;
+        AnimationPaused?.Invoke(CurrentAnimation);
+    }
+
+    public void Resume()
+    {
+        _state = SpriteAnimationState.Playing;
+    }
+
+    public SpriteAnimation GetAnimationByName(string name)
+    {
+        for (int i = 0; i < _spriteAnimations.Count; i++)
+        {
+            if (_spriteAnimations[i].Name == name)
+            {
+                return _spriteAnimations[i];
+            }
+        }
+
+        return null;
     }
 }

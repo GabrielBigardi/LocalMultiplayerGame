@@ -1,8 +1,5 @@
-﻿namespace GabrielBigardi.SpriteAnimator.Enums
+﻿public enum SpriteAnimationState
 {
-    public enum SpriteAnimationState
-    {
-        Playing = 0,
-        Paused = 1
-    }
+    Playing = 0,
+    Paused = 1
 }

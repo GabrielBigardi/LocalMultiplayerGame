@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using TMPro;
-using GabrielBigardi.SpriteAnimator.Animator;
 
 public class PlayerCore : MonoBehaviour
 {
