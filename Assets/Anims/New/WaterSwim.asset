@@ -15,5 +15,7 @@ MonoBehaviour:
   animationName: WaterSwim
   Name: WaterSwim
   FPS: 10
-  Frames: []
+  Frames:
+  - Sprite: {fileID: -6795505151613682930, guid: 814191b9cdcdf1f49ba0fafd58706e77, type: 3}
+  - Sprite: {fileID: -3994056269782726942, guid: 814191b9cdcdf1f49ba0fafd58706e77, type: 3}
   SpriteAnimationType: 0

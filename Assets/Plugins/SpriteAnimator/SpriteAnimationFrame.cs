@@ -6,5 +6,5 @@ using System;
 [Serializable]
 public class SpriteAnimationFrame
 {
-    public Sprite Sprite { get; set; }
+    public Sprite Sprite;
 }

@@ -15,5 +15,7 @@ MonoBehaviour:
   animationName: Walk
   Name: Walk
   FPS: 10
-  Frames: []
+  Frames:
+  - Sprite: {fileID: -454486318706166481, guid: 814191b9cdcdf1f49ba0fafd58706e77, type: 3}
+  - Sprite: {fileID: 4458526387590468766, guid: 814191b9cdcdf1f49ba0fafd58706e77, type: 3}
   SpriteAnimationType: 0
