@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: Death
   m_EditorClassIdentifier: 
   animationName: Death
+  Name: Death
+  FPS: 0
+  Frames: []
+  SpriteAnimationType: 1

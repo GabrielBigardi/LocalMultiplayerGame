@@ -8,11 +8,11 @@ public class SpriteAnimation : ScriptableObject
 {
     public string animationName = "animation";
 
-    public string Name { get; set; }
+    public string Name;
 
-    public int FPS { get; set; }
+    public int FPS;
 
-    public List<SpriteAnimationFrame> Frames { get; private set; }
+    public List<SpriteAnimationFrame> Frames;
 
-    public SpriteAnimationType SpriteAnimationType { get; set; }
+    public SpriteAnimationType SpriteAnimationType;
 }

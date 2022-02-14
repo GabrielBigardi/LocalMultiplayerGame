@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: WaterSwim
   m_EditorClassIdentifier: 
   animationName: WaterSwim
+  Name: WaterSwim
+  FPS: 10
+  Frames: []
+  SpriteAnimationType: 0

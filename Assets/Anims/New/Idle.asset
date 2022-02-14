@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: Idle
   m_EditorClassIdentifier: 
   animationName: Idle
+  Name: Idle
+  FPS: 2
+  Frames: []
+  SpriteAnimationType: 0

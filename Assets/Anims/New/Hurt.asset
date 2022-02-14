@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: Hurt
   m_EditorClassIdentifier: 
   animationName: Hurt
+  Name: Hurt
+  FPS: 6
+  Frames: []
+  SpriteAnimationType: 1

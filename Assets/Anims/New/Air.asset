@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: Air
   m_EditorClassIdentifier: 
   animationName: Air
+  Name: Air
+  FPS: 0
+  Frames: []
+  SpriteAnimationType: 1

@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: WaterIdle
   m_EditorClassIdentifier: 
   animationName: WaterIdle
+  Name: WaterIdle
+  FPS: 0
+  Frames: []
+  SpriteAnimationType: 1

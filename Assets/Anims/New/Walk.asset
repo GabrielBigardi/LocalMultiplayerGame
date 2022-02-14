@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: Walk
   m_EditorClassIdentifier: 
   animationName: Walk
+  Name: Walk
+  FPS: 10
+  Frames: []
+  SpriteAnimationType: 0

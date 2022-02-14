@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: Run
   m_EditorClassIdentifier: 
   animationName: Run
+  Name: Run
+  FPS: 14
+  Frames: []
+  SpriteAnimationType: 0
