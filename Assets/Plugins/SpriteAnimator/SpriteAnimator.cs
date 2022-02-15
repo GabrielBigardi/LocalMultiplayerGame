@@ -20,8 +20,6 @@ public class SpriteAnimator : MonoBehaviour
     private SpriteAnimationState _state = SpriteAnimationState.Playing;
     private SpriteAnimationFrame _previousAnimationFrame;
 
-    //private int _currentAnimationLoops = 0;
-    //private int _previousFrame = 0;
     private bool triggerAnimationEndedEvent = false;
 
     public Action SpriteChanged;
@@ -51,32 +49,21 @@ public class SpriteAnimator : MonoBehaviour
         {
             SpriteAnimationFrame currentFrame = _spriteAnimationHelper.UpdateAnimation(Time.deltaTime);
 
-            //Change sprite every LateUpdate tick, but call sprite changed event based on frame change
+            //Change sprite only when animation frame changes, animationended event
             if (currentFrame != null)
             {
-                //_spriteRenderer.sprite = currentFrame.Sprite;
-
-                //ON FRAME CHANGE
                 if(currentFrame != _previousAnimationFrame)
                 {
-                    //Check if should trigger animation ended event
                     if (triggerAnimationEndedEvent)
                     {
                         AnimationEnded?.Invoke();
 
-                        //If animation is looping, keep changing sprites, else don't
                         if (CurrentAnimation.SpriteAnimationType != SpriteAnimationType.Looping) return;
                     }
 
-                    //Set bool to trigger Animation Ended Event on next frame
                     if ((CurrentFrame + 1) > (CurrentAnimation.Frames.Count - 1))
                     {
-                        //Debug.Log($"End of frame reached, next frame will trigger animation end event");
                         triggerAnimationEndedEvent = true;
-                        //_currentAnimationLoops++;
-                        //
-                        //if(_currentAnimationLoops > 1)
-                        //    AnimationEnded?.Invoke();
                     }
 
                     _previousAnimationFrame = currentFrame;
@@ -86,6 +73,17 @@ public class SpriteAnimator : MonoBehaviour
                     SpriteChanged?.Invoke();
                 }
             }
+
+            ////Change sprite every LateUpdate tick, but call sprite changed event based on frame change
+            //if(currentFrame != null)
+            //{
+            //    _spriteRenderer.sprite = currentFrame.Sprite;
+            //    if (currentFrame != _previousAnimationFrame)
+            //    {
+            //        _previousAnimationFrame = currentFrame;
+            //        SpriteChanged?.Invoke();
+            //    }
+            //}
 
             //Change sprite only on frame change
             //if (currentFrame != null && currentFrame != _previousAnimationFrame)
