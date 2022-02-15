@@ -9,21 +9,43 @@ using Cinemachine;
 public class PlayerAssign : MonoBehaviour
 {
     public Transform mapBoundings;
+    public Camera defaultCamera;
+
+    public GameObject twoPlayersPanel;
+    public GameObject fourPlayersPanel;
+
     public List<PlayerInput> players = new List<PlayerInput>();
     public List<Transform> startingPoints;
     public List<LayerMask> playerLayers;
 
     public void OnPlayerJoined(PlayerInput playerInput)
     {
+        defaultCamera.gameObject.SetActive(false);
         players.Add(playerInput);
 
+        if (players.Count < 2)
+        {
+            twoPlayersPanel.SetActive(false);
+            fourPlayersPanel.SetActive(false);
+        }
+        else if(players.Count == 2)
+        {
+            twoPlayersPanel.SetActive(true);
+            fourPlayersPanel.SetActive(false);
+        }else if (players.Count > 2)
+        {
+            twoPlayersPanel.SetActive(false);
+            fourPlayersPanel.SetActive(true);
+        }
+
         Transform playerParent = playerInput.transform.parent;
-        int layerToAdd = (int)Mathf.Log(playerLayers[playerLayers.Count - 1].value, 2);
+        int layerToAdd = (int)Mathf.Log(playerLayers[players.Count - 1].value, 2);
 
         playerParent.position = startingPoints[players.Count - 1].position;
         playerParent.GetComponentInChildren<CinemachineVirtualCamera>().gameObject.layer = layerToAdd;
-        playerParent.GetComponentInChildren<CinemachineConfiner>().m_BoundingShape2D = mapBoundings.GetComponent<PolygonCollider2D>();
+        playerParent.GetComponentInChildren<Camera>().gameObject.layer = layerToAdd;
         playerParent.GetComponentInChildren<Camera>().cullingMask |= 1 << layerToAdd;
+        playerParent.GetComponentInChildren<CinemachineConfiner>().m_BoundingShape2D = mapBoundings.GetComponent<PolygonCollider2D>();
 
     }
 

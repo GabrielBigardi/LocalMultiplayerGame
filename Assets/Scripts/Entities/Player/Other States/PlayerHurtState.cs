@@ -7,6 +7,8 @@ public class PlayerHurtState : PlayerState
     public override void Tick()
     {
         base.Tick();
+
+
     }
 
     public override void FixedTick()
@@ -21,6 +23,7 @@ public class PlayerHurtState : PlayerState
         _playerEntity.currentState = "Hurt";
         _playerEntity.PlayAnimation("Hurt");
         _playerEntity.SetFrozen(true);
+        _playerEntity.core.anim.AnimationEnded += CheckTransitions;
     }
 
     public override void OnExit()
@@ -28,5 +31,26 @@ public class PlayerHurtState : PlayerState
         base.OnExit();
 
         _playerEntity.SetFrozen(false);
+        _playerEntity.core.anim.AnimationEnded -= CheckTransitions;
+    }
+
+    void CheckTransitions()
+    {
+        Debug.Log("Checking Transitions");
+        if (_playerEntity.IsGrounded)
+        {
+            if (_playerEntity.core.playerInputHandler.mov.x == 0f)
+            {
+                _stateMachine.SetState(_playerEntity.IdleState);
+            }
+            else
+            {
+                _stateMachine.SetState(_playerEntity.WalkState);
+            }
+        }
+        else
+        {
+            _stateMachine.SetState(_playerEntity.AirState);
+        }
     }
 }

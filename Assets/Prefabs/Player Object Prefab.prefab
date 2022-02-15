@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 256509467877317210}
   - component: {fileID: 256509467877317208}
   - component: {fileID: 256509467877317209}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: LifeBar_Outline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,7 +118,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 256509468455504575}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: WaterCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 256509468483924105}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -179,7 +179,6 @@ GameObject:
   m_Component:
   - component: {fileID: 256509468510606060}
   - component: {fileID: 256509468510606057}
-  - component: {fileID: 256509468510606058}
   - component: {fileID: 256509468510606059}
   m_Layer: 0
   m_Name: Camera
@@ -233,7 +232,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 3895
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -245,14 +244,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &256509468510606058
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 256509468510606061}
-  m_Enabled: 1
 --- !u!114 &256509468510606059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,7 +289,7 @@ GameObject:
   - component: {fileID: 256509468664075141}
   - component: {fileID: 256509468664075139}
   - component: {fileID: 256509468664075140}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: LifeBar_Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -373,7 +364,7 @@ GameObject:
   - component: {fileID: 256509469062676583}
   - component: {fileID: 256509469062676581}
   - component: {fileID: 256509469062676582}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: LifeBar_BG
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +441,7 @@ GameObject:
   - component: {fileID: 256509469559680098}
   - component: {fileID: 256509469559680099}
   - component: {fileID: 256509469559680100}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -556,7 +547,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4434425145089308902}
   - component: {fileID: 5136232730649152105}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Collider_Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -731,7 +722,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 5642755125505622028}
+  m_LookAt: {fileID: 0}
   m_Follow: {fileID: 5642755125505622028}
   m_Lens:
     FieldOfView: 60
@@ -775,7 +766,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7548825258070413312}
   - component: {fileID: 8041521211920572288}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Collider_Default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -823,7 +814,7 @@ GameObject:
   - component: {fileID: 308812298647698153}
   - component: {fileID: 1145511760629071644}
   - component: {fileID: 8266761139756175944}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Text (TMP) (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -957,7 +948,7 @@ GameObject:
   - component: {fileID: 264796690618043660}
   - component: {fileID: 2121186538661984721}
   - component: {fileID: 5290663562997181127}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Text (TMP) (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1091,7 +1082,7 @@ GameObject:
   - component: {fileID: 8635812965609016882}
   - component: {fileID: 2801387715640414948}
   - component: {fileID: 8290865210796149383}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Text (TMP) (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1230,7 +1221,7 @@ GameObject:
   - component: {fileID: 5642755125505622030}
   - component: {fileID: 347801183578152443}
   - component: {fileID: 4837624206820081870}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1497,7 +1488,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5642755125893150254}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: ShootPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1527,7 +1518,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5642755126089411113}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1564,7 +1555,7 @@ GameObject:
   - component: {fileID: 6068086749929874817}
   - component: {fileID: 5795523138331078615}
   - component: {fileID: 5397394751643255343}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Text (TMP) (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1698,7 +1689,7 @@ GameObject:
   - component: {fileID: 9082374099114979220}
   - component: {fileID: 5247271763280942390}
   - component: {fileID: 31298293151386182}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1831,7 +1822,7 @@ GameObject:
   m_Component:
   - component: {fileID: 488332797582178552}
   - component: {fileID: 5831783810938921763}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: SpriteRenderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1914,7 +1905,7 @@ GameObject:
   - component: {fileID: 20441347250148509}
   - component: {fileID: 4104894106441569730}
   - component: {fileID: 2263933725252534087}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Text (TMP) (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2046,7 +2037,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5666219068027447474}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Colliders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2080,7 +2071,7 @@ GameObject:
   - component: {fileID: 2888270078088702503}
   - component: {fileID: 4631667087349357765}
   - component: {fileID: 1640325432874658646}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Text (TMP) (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2214,7 +2205,7 @@ GameObject:
   - component: {fileID: 9061279712449062936}
   - component: {fileID: 4400093641434816728}
   - component: {fileID: 7208184572274061101}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Text (TMP) (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2347,7 +2338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5870293755212721500}
   - component: {fileID: 9082909566118090844}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2430,7 +2421,7 @@ GameObject:
   - component: {fileID: 3860411838037950923}
   - component: {fileID: 2428791292707955030}
   - component: {fileID: 7912096755262647054}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Text (TMP) (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

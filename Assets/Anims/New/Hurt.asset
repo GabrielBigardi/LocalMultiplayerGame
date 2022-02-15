@@ -18,4 +18,4 @@ MonoBehaviour:
   Frames:
   - Sprite: {fileID: -5457932288894342687, guid: 814191b9cdcdf1f49ba0fafd58706e77, type: 3}
   - Sprite: {fileID: -1290451334669362886, guid: 814191b9cdcdf1f49ba0fafd58706e77, type: 3}
-  SpriteAnimationType: 1
+  SpriteAnimationType: 0
