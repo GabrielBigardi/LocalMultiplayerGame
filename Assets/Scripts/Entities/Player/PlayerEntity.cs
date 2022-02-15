@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using GabrielBigardi.Animator;
 
 public class PlayerEntity : MonoBehaviour
 {

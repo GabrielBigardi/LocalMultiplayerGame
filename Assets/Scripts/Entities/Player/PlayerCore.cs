@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
+using GabrielBigardi.Animator;
 
 public class PlayerCore : MonoBehaviour
 {

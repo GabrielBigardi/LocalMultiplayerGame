@@ -1,5 +1,8 @@
-﻿public enum SpriteAnimationType
+﻿namespace GabrielBigardi.Animator
 {
-    Looping = 0,
-    PlayOnce = 1
+    public enum SpriteAnimationType
+    {
+        Looping = 0,
+        PlayOnce = 1
+    }
 }

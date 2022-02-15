@@ -3,8 +3,11 @@ using UnityEngine.Events;
 using System.Collections;
 using System;
 
-[Serializable]
-public class SpriteAnimationFrame
+namespace GabrielBigardi.Animator
 {
-    public Sprite Sprite;
+    [Serializable]
+    public class SpriteAnimationFrame
+    {
+        public Sprite Sprite;
+    }
 }
