@@ -36,7 +36,6 @@ public class PlayerHurtState : PlayerState
 
     void CheckTransitions()
     {
-        Debug.Log("Checking Transitions");
         if (_playerEntity.IsGrounded)
         {
             if (_playerEntity.core.playerInputHandler.mov.x == 0f)

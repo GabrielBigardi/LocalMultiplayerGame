@@ -19,9 +19,6 @@ public class PlayerEntity : MonoBehaviour
     #endregion
 
     #region Transitions Func
-    Func<bool> InputZero() => () => core.playerInputHandler.mov == Vector2.zero;
-    Func<bool> InputNotZero() => () => core.playerInputHandler.mov != Vector2.zero;
-
     Func<bool> InputXZero() => () => core.playerInputHandler.mov.x == 0f;
     Func<bool> InputXNotZero() => () => core.playerInputHandler.mov.x != 0f;
     Func<bool> NotGrounded() => () => !IsGrounded;
@@ -29,15 +26,7 @@ public class PlayerEntity : MonoBehaviour
     Func<bool> GroundedInputXZero() => () => IsGrounded && core.playerInputHandler.mov.x == 0f;
     Func<bool> GroundedInputXNotZero() => () => IsGrounded && core.playerInputHandler.mov.x != 0f;
 
-    Func<bool> NotGroundedLastFrame() => () => !IsGrounded && core.anim.IsLastFrame;
-    Func<bool> GroundedInputZeroLastFrame() => () => IsGrounded && core.playerInputHandler.mov.x == 0f && core.anim.IsLastFrame;
-    Func<bool> GroundedInputNotZeroLastFrame() => () => IsGrounded && core.playerInputHandler.mov.x != 0f && core.anim.IsLastFrame;
-
     Func<bool> OnWater() => () => IsOnWater;
-    Func<bool> NotOnWater() => () => !IsOnWater;
-    Func<bool> NotOnWaterGrounded() => () => !IsOnWater && IsGrounded;
-    Func<bool> NotOnWaterGroundedInputXZero() => () => !IsOnWater && IsGrounded && core.playerInputHandler.mov.x == 0f;
-    Func<bool> NotOnWaterGroundedInputXNotZero() => () => !IsOnWater && IsGrounded && core.playerInputHandler.mov.x != 0f;
     Func<bool> NotOnWaterNotGrounded() => () => !IsOnWater && !IsGrounded;
 
     Func<bool> Running() => () => core.playerInputHandler.holdingRun && core.playerInputHandler.mov.x != 0f;
