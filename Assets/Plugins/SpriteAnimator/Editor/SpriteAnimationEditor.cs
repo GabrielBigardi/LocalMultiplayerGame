@@ -119,7 +119,7 @@ namespace GabrielBigardi.Animator
         {
             var element = framesList.serializedProperty.GetArrayElementAtIndex(index);
             rect.y += 2;
-            Debug.Log(rect);
+
             EditorGUI.PropertyField(new Rect(rect.x, rect.y, rect.width / 2, EditorGUIUtility.singleLineHeight),element.FindPropertyRelative("Sprite"), GUIContent.none);
             EditorGUI.PropertyField(new Rect(rect.x + (rect.width / 2), rect.y, rect.width / 2, EditorGUIUtility.singleLineHeight), element.FindPropertyRelative("EventName"), GUIContent.none);
 
