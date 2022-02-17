@@ -9,5 +9,6 @@ namespace GabrielBigardi.Animator
     public class SpriteAnimationFrame
     {
         public Sprite Sprite;
+        public string EventName;
     }
 }

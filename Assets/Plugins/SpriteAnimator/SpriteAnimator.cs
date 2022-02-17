@@ -28,6 +28,7 @@ namespace GabrielBigardi.Animator
         public Action<SpriteAnimation> AnimationPlayed;
         public Action<SpriteAnimation> AnimationPaused;
         public Action AnimationEnded;
+        public Action<string> AnimationEventCalled;
 
         private void Awake()
         {
@@ -73,6 +74,7 @@ namespace GabrielBigardi.Animator
                         _spriteRenderer.sprite = currentFrame.Sprite;
 
                         SpriteChanged?.Invoke();
+                        AnimationEventCalled?.Invoke(currentFrame.EventName);
                     }
                 }
 

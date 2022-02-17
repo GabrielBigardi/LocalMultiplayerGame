@@ -37,7 +37,7 @@ namespace GabrielBigardi.Animator
 
         public override void OnInspectorGUI()
         {
-            //serializedObject.Update();
+            serializedObject.Update();
 
             EditorGUI.BeginChangeCheck();
 
@@ -57,7 +57,7 @@ namespace GabrielBigardi.Animator
                 EditorUtility.SetDirty(target);
             }
 
-            //serializedObject.ApplyModifiedProperties();
+            serializedObject.ApplyModifiedProperties();
         }
 
         public override bool HasPreviewGUI()
@@ -107,7 +107,8 @@ namespace GabrielBigardi.Animator
 
         private void InitializeFrameList()
         {
-            framesList = new ReorderableList(SelectedSpriteAnimation.Frames, typeof(Sprite), true, true, true, true);
+            framesList = new ReorderableList(serializedObject, serializedObject.FindProperty("Frames"), true, true, true, true);
+            //framesList = new ReorderableList(SelectedSpriteAnimation.Frames, typeof(Sprite), true, true, true, true);
             //framesList.elementHeight = EditorGUIUtility.singleLineHeight * 5f;
 
             framesList.drawElementCallback = DrawElement; // Actually draws the elements
@@ -116,11 +117,16 @@ namespace GabrielBigardi.Animator
 
         private void DrawElement(Rect rect, int index, bool isActive, bool isFocused)
         {
-            SpriteAnimationFrame spriteAnimationFrame = SelectedSpriteAnimation.Frames[index];
-
+            var element = framesList.serializedProperty.GetArrayElementAtIndex(index);
             rect.y += 2;
+            EditorGUI.PropertyField(new Rect(rect.x, rect.y, 150, EditorGUIUtility.singleLineHeight),element.FindPropertyRelative("Sprite"), GUIContent.none);
+            EditorGUI.PropertyField(new Rect(rect.x + 150, rect.y, rect.width - 150, EditorGUIUtility.singleLineHeight), element.FindPropertyRelative("EventName"), GUIContent.none);
 
-            spriteAnimationFrame.Sprite = EditorGUI.ObjectField(new Rect(rect.x, rect.y, rect.width, EditorGUIUtility.singleLineHeight), "", spriteAnimationFrame.Sprite, typeof(Sprite), false) as Sprite;
+            //SpriteAnimationFrame spriteAnimationFrame = SelectedSpriteAnimation.Frames[index];
+            //
+            //rect.y += 2;
+            //
+            //spriteAnimationFrame.Sprite = EditorGUI.ObjectField(new Rect(rect.x, rect.y, rect.width, EditorGUIUtility.singleLineHeight), "", spriteAnimationFrame.Sprite, typeof(Sprite), false) as Sprite;
         }
 
         private void DrawHeader(Rect rect)

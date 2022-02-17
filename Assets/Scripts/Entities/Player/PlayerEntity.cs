@@ -56,6 +56,29 @@ public class PlayerEntity : MonoBehaviour
 
         core.col = GetComponent<Collider2D>();
         core.currentShootDelay = data.shootDelay;
+        core.anim.AnimationEventCalled += EventTest;
+    }
+
+    private void OnDestroy()
+    {
+        core.anim.AnimationEventCalled -= EventTest;
+    }
+
+    private void EventTest(string eventName)
+    {
+        if (eventName == "") return;
+
+        print($"Event named {eventName} has been called");
+
+        if(eventName == "Idle01")
+        {
+            core.spriteRenderer.color = Color.red;
+        }
+
+        if (eventName == "Idle02")
+        {
+            core.spriteRenderer.color = Color.green;
+        }
     }
 
     private void Update()
