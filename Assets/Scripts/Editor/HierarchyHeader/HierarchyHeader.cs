@@ -37,8 +37,13 @@ public static class HierarchynHeader
             {
                 if (gameObject.name.StartsWith(headerColor.Key, System.StringComparison.Ordinal))
                 {
+                    GUIStyle guiStyle = new GUIStyle();
+                    guiStyle.fontStyle = FontStyle.Bold;
+                    guiStyle.normal.textColor = Color.red;
+                    guiStyle.alignment = TextAnchor.MiddleCenter;
+
                     EditorGUI.DrawRect(selectionRect, headerColor.Value);
-                    EditorGUI.DropShadowLabel(selectionRect, gameObject.name.Replace(headerColor.Key, "").ToUpperInvariant());
+                    EditorGUI.DropShadowLabel(selectionRect, gameObject.name.Replace(headerColor.Key, "").ToUpperInvariant(), guiStyle);
                 }
             }
         }
