@@ -52,7 +52,7 @@ public class VanishingPlatform : MonoBehaviour
 
         while (alpha > 0f)
         {
-            alpha -= _vanishSpeed;
+            alpha -= _vanishSpeed * Time.deltaTime;
             Color newColor = new Color(1, 1, 1, alpha);
             _spriteRenderer.color = newColor;
             yield return null;
@@ -64,7 +64,7 @@ public class VanishingPlatform : MonoBehaviour
 
         while (alpha < 1f)
         {
-            alpha += _unvanishSpeed;
+            alpha += _unvanishSpeed * Time.deltaTime;
             Color newColor = new Color(1, 1, 1, alpha);
             _spriteRenderer.color = newColor;
             yield return null;

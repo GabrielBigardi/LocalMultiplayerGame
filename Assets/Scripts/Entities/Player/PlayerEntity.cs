@@ -68,7 +68,7 @@ public class PlayerEntity : MonoBehaviour
     {
         if (eventName == "") return;
 
-        print($"Event named {eventName} has been called");
+        //print($"Event named {eventName} has been called");
 
         if(eventName == "Idle01")
         {

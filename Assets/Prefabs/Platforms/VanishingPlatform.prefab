@@ -142,8 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b404fa1163ce754eaf3e30854eb11eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _vanishSpeed: 0.008
-  _unvanishSpeed: 0.002
+  _vanishSpeed: 2
+  _unvanishSpeed: 4
   contactPoint: {x: 0, y: 0, z: 0}
   center: {x: 0, y: 0, z: 0}
   normalized: {x: 0, y: 0, z: 0}
