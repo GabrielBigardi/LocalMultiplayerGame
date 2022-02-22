@@ -108,6 +108,11 @@ public class PlayerEntity : MonoBehaviour
             TakeDamage(25, true);
         }
 
+        if (collision.CompareTag("CaveEntrance"))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        }
+
         if (collision.CompareTag("Death"))
         {
             TakeDamage(core.playerHealth.maxHealth, false);

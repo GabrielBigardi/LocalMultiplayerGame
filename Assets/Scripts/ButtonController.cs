@@ -23,7 +23,7 @@ public class ButtonController : MonoBehaviour
     {
         if(id == this.id)
         {
-            transform.DOMoveY(-4.5f, 0.25f).SetEase(Ease.OutSine);
+            transform.DOMoveY(-5f, 0.25f).SetEase(Ease.OutSine);
         }
     }
 
@@ -39,7 +39,7 @@ public class ButtonController : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player"))
         {
-            collision.transform.parent = transform;
+            collision.transform.parent.parent = transform;
         }
     }
 

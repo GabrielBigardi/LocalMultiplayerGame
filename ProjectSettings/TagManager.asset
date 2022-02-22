@@ -10,6 +10,7 @@ TagManager:
   - BulletRed
   - Bullet
   - Death
+  - CaveEntrance
   layers:
   - Default
   - TransparentFX
