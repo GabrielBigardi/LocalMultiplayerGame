@@ -209,6 +209,11 @@ public class PlayerEntity : MonoBehaviour
         StateMachine.AddAnyTransition(DeathState, IsDead());
     }
 
+    public void SetVelocity(Vector2 velocity)
+    {
+        core.rgbd.velocity = velocity;
+    }
+
     public void SetVelocityX(float velocity)
     {
         core.rgbd.velocity = new Vector2(velocity, core.rgbd.velocity.y);

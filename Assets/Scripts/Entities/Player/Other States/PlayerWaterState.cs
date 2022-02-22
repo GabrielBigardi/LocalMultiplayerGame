@@ -32,21 +32,34 @@ public class PlayerWaterState : IState
 
     public virtual void FixedTick()
     {
-        _playerEntity.core.rgbd.velocity = (_playerEntity.core.playerInputHandler.holdingRun ? _playerEntity.data.waterSpeed * _playerEntity.data.runSpeedMultiplier : _playerEntity.data.waterSpeed) * Time.deltaTime * (new Vector2(_playerEntity.core.playerInputHandler.mov.x, _playerEntity.core.playerInputHandler.mov.y).normalized);
-        if(_playerEntity.core.rgbd.velocity == Vector2.zero)
+        //Debug.Log(_playerEntity.core.rgbd.velocity.magnitude);
+        if (Mathf.Abs(_playerEntity.core.rgbd.velocity.x) >= 0.1f || Mathf.Abs(_playerEntity.core.rgbd.velocity.y) >= 0.1f)
         {
-            if(_playerEntity.core.anim.CurrentAnimation.Name != "WaterIdle")
-            {
-                _playerEntity.PlayAnimation("WaterIdle");
-            }
+            if (_playerEntity.core.anim.CurrentAnimation.Name != "WaterSwim")
+                _playerEntity.PlayAnimation("WaterSwim");
         }
         else
         {
-            if (_playerEntity.core.anim.CurrentAnimation.Name != "WaterSwim")
-            {
-                _playerEntity.PlayAnimation("WaterSwim");
-            }
+            if (_playerEntity.core.anim.CurrentAnimation.Name != "WaterIdle")
+                _playerEntity.PlayAnimation("WaterIdle");
         }
+
+        _playerEntity.core.rgbd.velocity = (_playerEntity.core.playerInputHandler.holdingRun ? _playerEntity.data.waterSpeed * _playerEntity.data.runSpeedMultiplier : _playerEntity.data.waterSpeed) * Time.deltaTime * (new Vector2(_playerEntity.core.playerInputHandler.mov.x, _playerEntity.core.playerInputHandler.mov.y).normalized);
+        
+        //if (_playerEntity.core.rgbd.velocity.x == 0f)
+        //{
+        //    if(_playerEntity.core.anim.CurrentAnimation.Name != "WaterIdle")
+        //    {
+        //        _playerEntity.PlayAnimation("WaterIdle");
+        //    }
+        //}
+        //else
+        //{
+        //    if (_playerEntity.core.anim.CurrentAnimation.Name != "WaterSwim")
+        //    {
+        //        _playerEntity.PlayAnimation("WaterSwim");
+        //    }
+        //}
     }
 
     public virtual void OnEnter()
