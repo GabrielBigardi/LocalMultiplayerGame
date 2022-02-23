@@ -1,4 +1,4 @@
-﻿namespace GabrielBigardi.Animator
+﻿namespace GabrielBigardi.SpriteAnimator
 {
     public enum SpriteAnimationType
     {

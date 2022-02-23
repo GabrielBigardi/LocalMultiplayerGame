@@ -2,7 +2,7 @@
 using UnityEditorInternal;
 using UnityEditor;
 
-namespace GabrielBigardi.Animator
+namespace GabrielBigardi.SpriteAnimator
 {
     [CustomEditor(typeof(SpriteAnimation))]
     public class SpriteAnimationEditor : Editor

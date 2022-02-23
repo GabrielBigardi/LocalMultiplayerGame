@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System;
 
-namespace GabrielBigardi.Animator
+namespace GabrielBigardi.SpriteAnimator
 {
     public class SpriteAnimator : MonoBehaviour
     {

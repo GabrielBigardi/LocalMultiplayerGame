@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using GabrielBigardi.Animator;
+using GabrielBigardi.SpriteAnimator;
 
 public class PlayerEntity : MonoBehaviour
 {

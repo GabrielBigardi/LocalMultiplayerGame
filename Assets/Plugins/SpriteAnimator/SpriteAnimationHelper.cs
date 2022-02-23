@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GabrielBigardi.Animator
+namespace GabrielBigardi.SpriteAnimator
 {
     public class SpriteAnimationHelper
     {
