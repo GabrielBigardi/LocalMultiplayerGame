@@ -11,6 +11,7 @@ public class CalculateOrtographicSize : MonoBehaviour
     void Update()
     {
         var result = (((float)verticalResolution) / ((float)scale * pixelsPerUnit)) * 0.5f;
+        GetComponent<Camera>().orthographicSize = result;
         Debug.Log(result);
     }
 }
