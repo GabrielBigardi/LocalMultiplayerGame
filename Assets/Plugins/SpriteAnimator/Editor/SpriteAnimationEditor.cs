@@ -5,10 +5,9 @@ using UnityEditor;
 namespace GabrielBigardi.SpriteAnimator
 {
     [CustomEditor(typeof(SpriteAnimation))]
+    [CanEditMultipleObjects]
     public class SpriteAnimationEditor : Editor
     {
-        private ReorderableList framesList;
-
         private SpriteAnimation SelectedSpriteAnimation
         {
             get { return target as SpriteAnimation; }
@@ -17,15 +16,22 @@ namespace GabrielBigardi.SpriteAnimator
         private float timeTracker = 0;
 
         private SpriteAnimationFrame currentFrame;
-
         private SpriteAnimationHelper spriteAnimationHelper;
+
+        private SerializedProperty _name;
+        private SerializedProperty _fps;
+        private SerializedProperty _frames;
+        private SerializedProperty _spriteAnimationType;
 
         private void OnEnable()
         {
             timeTracker = (float)EditorApplication.timeSinceStartup;
             spriteAnimationHelper = new SpriteAnimationHelper(SelectedSpriteAnimation);
 
-            InitializeFrameList();
+            _name = serializedObject.FindProperty("Name");
+            _fps = serializedObject.FindProperty("FPS");
+            _frames = serializedObject.FindProperty("Frames");
+            _spriteAnimationType = serializedObject.FindProperty("SpriteAnimationType");
 
             EditorApplication.update += OnUpdate;
         }
@@ -39,23 +45,10 @@ namespace GabrielBigardi.SpriteAnimator
         {
             serializedObject.Update();
 
-            EditorGUI.BeginChangeCheck();
-
-            if (SelectedSpriteAnimation != null && framesList != null)
-            {
-                SelectedSpriteAnimation.Name = EditorGUILayout.TextField("Name", SelectedSpriteAnimation.Name);
-
-                framesList.DoLayoutList();
-
-                SelectedSpriteAnimation.FPS = Mathf.Max(EditorGUILayout.IntField("FPS", SelectedSpriteAnimation.FPS), 0);
-
-                SelectedSpriteAnimation.SpriteAnimationType = (SpriteAnimationType)EditorGUILayout.EnumPopup("Type", SelectedSpriteAnimation.SpriteAnimationType);
-            }
-
-            if (EditorGUI.EndChangeCheck())
-            {
-                EditorUtility.SetDirty(target);
-            }
+            EditorGUILayout.PropertyField(_name);
+            EditorGUILayout.PropertyField(_fps);
+            EditorGUILayout.PropertyField(_frames);
+            EditorGUILayout.PropertyField(_spriteAnimationType);
 
             serializedObject.ApplyModifiedProperties();
         }
@@ -103,36 +96,6 @@ namespace GabrielBigardi.SpriteAnimator
 
                 GUI.DrawTextureWithTexCoords(previewRect, t, r2, true);
             }
-        }
-
-        private void InitializeFrameList()
-        {
-            framesList = new ReorderableList(serializedObject, serializedObject.FindProperty("Frames"), true, true, true, true);
-            //framesList = new ReorderableList(SelectedSpriteAnimation.Frames, typeof(Sprite), true, true, true, true);
-            //framesList.elementHeight = EditorGUIUtility.singleLineHeight * 5f;
-
-            framesList.drawElementCallback = DrawElement; // Actually draws the elements
-            framesList.drawHeaderCallback = DrawHeader; // Label the Rect with "Frames" instead of IList
-        }
-
-        private void DrawElement(Rect rect, int index, bool isActive, bool isFocused)
-        {
-            var element = framesList.serializedProperty.GetArrayElementAtIndex(index);
-            rect.y += 2;
-
-            EditorGUI.PropertyField(new Rect(rect.x, rect.y, rect.width / 2, EditorGUIUtility.singleLineHeight),element.FindPropertyRelative("Sprite"), GUIContent.none);
-            EditorGUI.PropertyField(new Rect(rect.x + (rect.width / 2), rect.y, rect.width / 2, EditorGUIUtility.singleLineHeight), element.FindPropertyRelative("EventName"), GUIContent.none);
-
-            //SpriteAnimationFrame spriteAnimationFrame = SelectedSpriteAnimation.Frames[index];
-            //
-            //rect.y += 2;
-            //
-            //spriteAnimationFrame.Sprite = EditorGUI.ObjectField(new Rect(rect.x, rect.y, rect.width, EditorGUIUtility.singleLineHeight), "", spriteAnimationFrame.Sprite, typeof(Sprite), false) as Sprite;
-        }
-
-        private void DrawHeader(Rect rect)
-        {
-            EditorGUI.LabelField(rect, "Frames");
         }
 
         private bool HasAnimationAndFrames()
