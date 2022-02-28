@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d36bc3878da37e4caa8d53ad2541f3e, type: 3}
+  m_Name: Hurt
+  m_EditorClassIdentifier: 
+  clips:
+  - {fileID: 8300000, guid: 182258d372b631648bf01b0eeac7852c, type: 3}
+  - {fileID: 8300000, guid: 6bc6c67d420e5be42bc10d3bcd7d39bd, type: 3}
+  - {fileID: 8300000, guid: bf5f75442cdc6ce4d9a55b2c82da21c5, type: 3}
+  - {fileID: 8300000, guid: 0da2ed12aac1f6d488e2f36b74b62cda, type: 3}
+  - {fileID: 8300000, guid: 372da51dbdd657f418dafd791ff7ec2f, type: 3}
+  - {fileID: 8300000, guid: f7a45cb40691be047b784a2810f33bb5, type: 3}
+  - {fileID: 8300000, guid: b3ef7486f199cf049a750cdc14c0b8e2, type: 3}
+  volume:
+    minValue: 0.8986772
+    maxValue: 0.8986772
+  pitch:
+    minValue: 0.9549676
+    maxValue: 1.0450324

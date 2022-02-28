@@ -46,6 +46,11 @@ public class PlayerEntity : MonoBehaviour
 
     public int currentTeam;
 
+    public AudioEvent footStepAudio;
+    public AudioEvent jumpAudio;
+    public AudioEvent landAudio;
+    public AudioEvent hurtAudio;
+
     private void Start()
     {
         InitializeComponents();
@@ -70,14 +75,9 @@ public class PlayerEntity : MonoBehaviour
 
         //print($"Event named {eventName} has been called");
 
-        if(eventName == "Idle01")
+        if(eventName == "Footstep")
         {
-            core.spriteRenderer.color = Color.red;
-        }
-
-        if (eventName == "Idle02")
-        {
-            core.spriteRenderer.color = Color.green;
+            SFXManager.Instance.PlaySFX(footStepAudio);
         }
     }
 
@@ -280,6 +280,7 @@ public class PlayerEntity : MonoBehaviour
     {
         SetVelocityY(data.jumpForce);
         InstantiateJumpParticles();
+        SFXManager.Instance.PlaySFX(jumpAudio);
     }
 
     public void JumpCheck()

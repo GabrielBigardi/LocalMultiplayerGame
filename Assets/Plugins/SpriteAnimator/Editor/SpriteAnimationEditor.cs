@@ -50,7 +50,6 @@ namespace GabrielBigardi.SpriteAnimator
 
             EditorGUILayout.PropertyField(_name);
             EditorGUILayout.PropertyField(_fps);
-            //EditorGUILayout.PropertyField(_frames);
             _framesReorderableList.DoLayoutList();
             EditorGUILayout.PropertyField(_spriteAnimationType);
 

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d36bc3878da37e4caa8d53ad2541f3e, type: 3}
-  m_Name: SFX_Jump
+  m_Name: Jump
   m_EditorClassIdentifier: 
   clips:
   - {fileID: 8300000, guid: ea1fe049319fe344a911415e050c2253, type: 3}
   volume:
-    minValue: 1
-    maxValue: 1
+    minValue: 0.752322
+    maxValue: 0.752322
   pitch:
-    minValue: 1
-    maxValue: 1
+    minValue: 0.79735434
+    maxValue: 0.95496774

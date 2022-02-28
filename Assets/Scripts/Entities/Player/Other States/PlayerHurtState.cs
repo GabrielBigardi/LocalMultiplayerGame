@@ -20,6 +20,8 @@ public class PlayerHurtState : PlayerState
     {
         base.OnEnter();
 
+        SFXManager.Instance.PlaySFX(_playerEntity.hurtAudio);
+
         _playerEntity.currentState = "Hurt";
         _playerEntity.PlayAnimation("Hurt");
         _playerEntity.SetFrozen(true);
