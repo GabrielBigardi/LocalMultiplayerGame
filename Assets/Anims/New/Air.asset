@@ -17,5 +17,5 @@ MonoBehaviour:
   FPS: 0
   Frames:
   - Sprite: {fileID: 4458526387590468766, guid: 814191b9cdcdf1f49ba0fafd58706e77, type: 3}
-    EventName: Air
+    EventName: 
   SpriteAnimationType: 1
