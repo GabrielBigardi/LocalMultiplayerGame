@@ -57,4 +57,9 @@ public class PlayerInputHandler : MonoBehaviour
             holdingRun = false;
         }
     }
+
+    public void TestInput(InputAction.CallbackContext ctx)
+    {
+        Debug.Log(ctx.ReadValue<Vector2>().x);
+    }
 }
