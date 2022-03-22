@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using GabrielBigardi.SpriteAnimator;
+using UnityEngine;
 
 public class PlayerHurtState : PlayerState
 {
@@ -36,7 +37,7 @@ public class PlayerHurtState : PlayerState
         _playerEntity.core.anim.AnimationEnded -= CheckTransitions;
     }
 
-    void CheckTransitions()
+    void CheckTransitions(SpriteAnimation endedAnimation)
     {
         if (_playerEntity.IsGrounded)
         {

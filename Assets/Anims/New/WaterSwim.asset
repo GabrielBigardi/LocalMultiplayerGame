@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04e6f6b396aaad8409ac6804e2834b12, type: 3}
+  m_Script: {fileID: 11500000, guid: 83e5c7a8ea4fd6c488eed584ca542a36, type: 3}
   m_Name: WaterSwim
   m_EditorClassIdentifier: 
-  animationName: WaterSwim
+  animationName: animation
   Name: WaterSwim
   FPS: 10
   Frames:

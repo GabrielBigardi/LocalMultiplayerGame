@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.gabrielbigardi.spriteanimator": {
+      "version": "https://github.com/GabrielBigardi/2D-Sprite-Animator.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "0ff4ed001439e8f032cf3dd3cf3a425d21a2ee88"
+    },
     "com.unity.2d.common": {
       "version": "3.0.1",
       "depth": 1,

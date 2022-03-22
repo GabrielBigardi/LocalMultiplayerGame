@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.gabrielbigardi.spriteanimator": "https://github.com/GabrielBigardi/2D-Sprite-Animator.git",
     "com.unity.2d.pixel-perfect": "4.0.1",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.spriteshape": "4.1.5",

@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04e6f6b396aaad8409ac6804e2834b12, type: 3}
+  m_Script: {fileID: 11500000, guid: 83e5c7a8ea4fd6c488eed584ca542a36, type: 3}
   m_Name: Death
   m_EditorClassIdentifier: 
-  animationName: Death
+  animationName: animation
   Name: Death
   FPS: 0
   Frames:
   - Sprite: {fileID: -5457932288894342687, guid: 814191b9cdcdf1f49ba0fafd58706e77, type: 3}
+    EventName: 
   SpriteAnimationType: 1
